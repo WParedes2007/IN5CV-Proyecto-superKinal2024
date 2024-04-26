@@ -693,10 +693,10 @@ DELIMITER ;
 -- CRUD Ticket Soporte
 -- Agregar: Ticket Soporte
 DELIMITER $$
-CREATE PROCEDURE sp_AgregarTicketSoporte(IN des VARCHAR(250),IN est VARCHAR(30),IN cliId INT,IN facId INT)
+CREATE PROCEDURE sp_AgregarTicketSoporte(des varchar(250), cliId int, facId int)
 BEGIN
     INSERT INTO TicketSoporte(descripcionTicket, estatus, clienteId, facturaId)
-    VALUES (des, est, cliId, facId);
+    VALUES (des, 'Recién Creado', cliId, facId);
 END $$
 DELIMITER ;
 
