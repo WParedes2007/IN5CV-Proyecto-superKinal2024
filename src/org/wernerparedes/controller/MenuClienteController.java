@@ -212,17 +212,6 @@ public class MenuClienteController implements Initializable {
         }
     }
     
-    /*@FXML
-    public void handleButtonAction(ActionEvent event){
-        if(event.getSource()== btnAgregar){
-        stage.formClientesView(1);
-        }else if(event.getSource()== btnEditar){
-        stage.formClientesView(2);
-        }else if(event.getSource()== btnRegresar){
-        stage.menuPrincipalView();
-        }
-    }*/
-    
     
       
     

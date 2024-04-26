@@ -15,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import org.wernerparedes.controller.FormularioClienteController;
 import org.wernerparedes.controller.MenuClienteController;
+import org.wernerparedes.controller.MenuDistribuidorController;
 import org.wernerparedes.controller.MenuPrincipalController;
 import org.wernerparedes.controller.MenuTicketSoporteController;
 /**
@@ -83,6 +84,15 @@ public class Main extends Application {
         try{
             MenuTicketSoporteController menuTicketSoporteView = (MenuTicketSoporteController)switchScene("MenuTicketSoporteView.fxml",765,471);
             menuTicketSoporteView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+     
+     public void menuDistribuidorView(){
+        try{
+            MenuDistribuidorController menuDistribuidorView = (MenuDistribuidorController)switchScene("MenuDistribuidorView.fxml",1200,750);
+            menuDistribuidorView.setStage(this);
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
