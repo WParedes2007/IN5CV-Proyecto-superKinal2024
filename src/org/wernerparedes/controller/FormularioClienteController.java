@@ -14,11 +14,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import org.wernerparedes.dao.Conexion;
 import org.wernerparedes.dto.ClienteDTO;
 import org.wernerparedes.model.Cliente;
 import org.wernerparedes.system.Main;
+import org.wernerparedes.utils.SuperKinalAlert;
 
 /**
  *
@@ -119,12 +121,31 @@ public class FormularioClienteController implements Initializable{
         ClienteDTO.getClienteDTO().setCliente(null);
         }else if(event.getSource() == btnGuardar){
             if(op == 1){
+                if(!tfNombre.getText().equals("") && !tfApellido.getText().equals("")&& !tfDireccion.getText().equals("")){
+                    
                 agregarCliente();
+                SuperKinalAlert.getInstance().mostrarAlertaInfo(401);
+                }else{
+                    SuperKinalAlert.getInstance().mostrarAlertaInfo(400);
+                    tfNombre.requestFocus();
+                    return;
+                }
                 stage.menuClientesView();
             }else if(op == 2){
-                editarCliente();
-                ClienteDTO.getClienteDTO().setCliente(null);
-                stage.menuClientesView();
+                
+                 if(!tfNombre.getText().equals("") && !tfApellido.getText().equals("")&& !tfDireccion.getText().equals("")){
+                     if(SuperKinalAlert.getInstance().mostrarAlertaConfirmacion(406).get() == ButtonType.OK){
+                        editarCliente();
+                        ClienteDTO.getClienteDTO().setCliente(null);
+                        stage.menuClientesView();
+                     }
+                    
+                }else{
+                    SuperKinalAlert.getInstance().mostrarAlertaInfo(400);
+                    tfNombre.requestFocus();
+                    return;
+                }
+                
             }
         }
     }
