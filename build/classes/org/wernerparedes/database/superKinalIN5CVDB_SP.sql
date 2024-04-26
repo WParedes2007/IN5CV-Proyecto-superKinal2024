@@ -679,7 +679,7 @@ DELIMITER ;
 
 -- Editar: Promociones
 DELIMITER $$
-CREATE PROCEDURE sp_EditarDetalleCompra(IN detId INT,    IN comId INT,    IN proId INT)
+CREATE PROCEDURE sp_EditarPromocion(IN detId INT,    IN comId INT,    IN proId INT)
 BEGIN
     UPDATE DetalleCompra
     SET
@@ -704,11 +704,11 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE sp_ListarTicketsSoporte()
 BEGIN
-    SELECT TS.ticketSoporteId, TS.descripcion, TS.estatus,
+    SELECT TS.ticketSoporteId, TS.descripcionTicket, TS.estatus,
 		CONCAT('{Id:',C.clienteId,'}','{Nombre:',C.nombre, C.apellido,'}')AS 'Cliente',
 		C.clienteId, C.nombre,C.apellido,
-        F.total FROM TicketSoporte TS
-        join Clientes C on TS.clienteId = C.clienteId
+        TS.facturaId FROM TicketSoporte TS
+        join Clientes C on TS.clienteId = C.clienteId;
 END $$
 DELIMITER ;
 

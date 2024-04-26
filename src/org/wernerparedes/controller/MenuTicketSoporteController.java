@@ -63,8 +63,11 @@ public class MenuTicketSoporteController implements Initializable {
             if(tfTicketId.getText().equals("")){
                 agregarTicketSoporte();
                 cargarDatos();
+            }else{
+                editarTicket();
+                cargarDatos();
             }
-        }else if(event.getSource() == btnVaciar){
+        } else if(event.getSource() == btnVaciar){
             vaciarCampos();
         }
     }
@@ -107,10 +110,6 @@ public class MenuTicketSoporteController implements Initializable {
         this.stage = stage;
     }
     
-    /*@FXML
-    public void handleButtonAction(ActionEvent event){
-       
-    }*/
     public ObservableList<TicketSoporte> listarTickets(){
         ArrayList<TicketSoporte> tickets = new ArrayList<>();
         try{
@@ -194,10 +193,8 @@ public class MenuTicketSoporteController implements Initializable {
             conexion = Conexion.getInstance().obtenerConexion();
             String sql = "call sp_AgregarTicketSoporte(?,?,?)";
             statement = conexion.prepareStatement(sql);
-            resultSet = statement.executeQuery();
             statement.setString(1, taDescripcion.getText());
             statement.setInt(2,((Cliente)cmbClientes.getSelectionModel().getSelectedItem()).getClienteId());
-            //statement.setInt(3,((Factura)cmbFacturas.getSelectionModel().getSelectedItem()).getFacturaId());
             statement.setInt(3,1);
             statement.execute();
         }catch(SQLException e){
@@ -211,7 +208,7 @@ public class MenuTicketSoporteController implements Initializable {
                     conexion.close();
                 }
             }catch(SQLException e){
-            System.out.println(e.getMessage());
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -224,7 +221,7 @@ public class MenuTicketSoporteController implements Initializable {
             statement.setInt(1, Integer.parseInt(tfTicketId.getText()));
             statement.setString(2,taDescripcion.getText());
             statement.setString(3, cmbEstatus.getSelectionModel().getSelectedItem().toString());
-            //statement.setInt(4,((Cliente).getSelectionModel().getSelectedItem()).getClienteId());
+            statement.setInt(4, ((Cliente)cmbClientes.getSelectionModel().getSelectedItem()).getClienteId());
             statement.setInt(5,1);
             statement.execute();
         }catch(SQLException e){
@@ -260,6 +257,7 @@ public class MenuTicketSoporteController implements Initializable {
             String clienteTbl = ((TicketSoporte)tblTickets.getSelectionModel().getSelectedItem()).getCliente();
             if(clienteCmb.equals(clienteTbl)){
                 index = i;
+                break;
             }
         }
         return index;

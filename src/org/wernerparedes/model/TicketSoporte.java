@@ -84,6 +84,13 @@ public class TicketSoporte {
     public void setFacturaId(int facturaId) {
         this.facturaId = facturaId;
     }
+
+    @Override
+    public String toString() {
+        return "TicketSoporte{" + "ticketSoporteId=" + ticketSoporteId + ", descripcionTicket=" + descripcionTicket + ", estatus=" + estatus + ", cliente=" + cliente + ", clienteId=" + clienteId + ", facturaId=" + facturaId + '}';
+    }
+    
+    
     
     
 }
