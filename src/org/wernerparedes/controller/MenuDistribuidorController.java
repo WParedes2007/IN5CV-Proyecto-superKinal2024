@@ -18,6 +18,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -26,6 +27,7 @@ import org.wernerparedes.dao.Conexion;
 import org.wernerparedes.dto.DistribuidorDTO;
 import org.wernerparedes.model.Distribuidor;
 import org.wernerparedes.system.Main;
+import org.wernerparedes.utils.SuperKinalAlert;
 
 /**
  * FXML Controller class
@@ -51,12 +53,47 @@ public class MenuDistribuidorController implements Initializable {
     @FXML
     TableColumn colDistribuidorId,colNombre,colTelefono,colDireccion,colNit,colWeb;
     
+    @FXML
+    public void handleButtonAction(ActionEvent event){
+        if(event.getSource() == btnRegresar){
+           stage.menuPrincipalView(); 
+        }
+        else if(event.getSource() == btnAgregar){
+            stage.formDistribuidoresView(1);
+        }
+        else if(event.getSource() == btnEditar){
+            DistribuidorDTO.getDistribuidorDTO().setDistribuidor((Distribuidor)tblDistribuidor.getSelectionModel().getSelectedItem());
+            stage.formDistribuidoresView(2);
+        }
+        else if(event.getSource() == btnEliminar){
+            if(SuperKinalAlert.getInstance().mostrarAlertaConfirmacion(405).get() == ButtonType.OK){
+                int disId = ((Distribuidor)tblDistribuidor.getSelectionModel().getSelectedItem()).getDistribuidorId();
+                eliminarDistribuidor(disId);
+                cargarDatos();
+            }    
+        }
+        else if(event.getSource() == btnBuscar){
+            tblDistribuidor.getItems().clear();
+            if(tfDistribuidorId.getText().equals("")){
+                cargarDatos();
+            }else{
+                tblDistribuidor.getItems().add(buscarDistribuidor());
+                colDistribuidorId.setCellValueFactory(new PropertyValueFactory<Distribuidor, Integer> ("distribuidorId"));
+                colNombre.setCellValueFactory(new PropertyValueFactory<Distribuidor, String> ("nombreDistribuidor"));
+                colDireccion.setCellValueFactory(new PropertyValueFactory<Distribuidor, String> ("direccionDistribuidor"));
+                colNit.setCellValueFactory(new PropertyValueFactory<Distribuidor, String> ("nitDistribuidor"));
+                colTelefono.setCellValueFactory(new PropertyValueFactory<Distribuidor, String> ("telefonoDistribuidor"));
+                colWeb.setCellValueFactory(new PropertyValueFactory<Distribuidor, String> ("web"));
+            }
+        }
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        cargarDatos();
     }  
     
-    public void cargarLista(){
+    public void cargarDatos(){
        tblDistribuidor.getItems().add(listarDistribuidores());
        colDistribuidorId.setCellValueFactory(new PropertyValueFactory<Distribuidor, Integer> ("distribuidorId"));
        colNombre.setCellValueFactory(new PropertyValueFactory<Distribuidor, String> ("nombreDistribuidor"));
@@ -71,7 +108,7 @@ public class MenuDistribuidorController implements Initializable {
         ArrayList<Distribuidor> distribuidores = new ArrayList<>();
         try{
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_ListarDistribuidores";
+            String sql = "call sp_listarDistribuidores()";
             statement = conexion.prepareStatement(sql);
             resultSet = statement.executeQuery();
             
@@ -145,7 +182,7 @@ public class MenuDistribuidorController implements Initializable {
                 String telefono = resultSet.getString("telefonoDistribuidor");
                 String web = resultSet.getString("web");
                 
-                distribuidor = (new Distribuidor(distribuidorId,nombre,direccion, nit,telefono,web));
+                distribuidor = (new Distribuidor(distribuidorId,nombre,direccion,nit,telefono,web));
             }
         }catch(SQLException e){
             System.out.println(e.getMessage());
@@ -167,36 +204,7 @@ public class MenuDistribuidorController implements Initializable {
         return distribuidor;
     }
     
-    public void handleButtonAction(ActionEvent event){
-        if(event.getSource()== btnAgregar){
-                //stage.formClienteView(1);
-                }else if(event.getSource()== btnEditar){
-                DistribuidorDTO.getDistribuidorDTO().setDistribuidor((Distribuidor)tblDistribuidor.getSelectionModel().getSelectedItem());
-                //stage.formClienteView(2);
-                }else if(event.getSource()== btnEliminar){
-                    int disId = ((Distribuidor)tblDistribuidor.getSelectionModel().getSelectedItem()).getDistribuidorId();
-                    eliminarDistribuidor(disId);
-                    cargarLista();
-                }else if(event.getSource()== btnBuscar){
-                    tblDistribuidor.getItems().clear();
-
-                    if(tfDistribuidorId.getText().equals("")){
-                        cargarLista();
-                    }else{
-
-                    tblDistribuidor.getItems().add(buscarDistribuidor());
-                    colDistribuidorId.setCellValueFactory(new PropertyValueFactory<Distribuidor, Integer> ("distribuidorId"));
-                    colNombre.setCellValueFactory(new PropertyValueFactory<Distribuidor, String> ("nombreDistribuidor"));
-                    colDireccion.setCellValueFactory(new PropertyValueFactory<Distribuidor, String> ("direccionDistribuidor"));
-                    colNit.setCellValueFactory(new PropertyValueFactory<Distribuidor, String> ("nitDistribuidor"));
-                    colTelefono.setCellValueFactory(new PropertyValueFactory<Distribuidor, String> ("telefonoDistribuidor"));
-                    colWeb.setCellValueFactory(new PropertyValueFactory<Distribuidor, String> ("web"));
-
-                    }
-                }else if(event.getSource()== btnRegresar){
-                stage.menuPrincipalView();
-                }  
-    }
+    
     
     public Main getStage() {
         return stage;

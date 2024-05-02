@@ -14,6 +14,7 @@ import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import org.wernerparedes.controller.FormularioClienteController;
+import org.wernerparedes.controller.FormularioDistribuidorController;
 import org.wernerparedes.controller.MenuClienteController;
 import org.wernerparedes.controller.MenuDistribuidorController;
 import org.wernerparedes.controller.MenuPrincipalController;
@@ -89,7 +90,17 @@ public class Main extends Application {
         }
     }
      
-     public void menuDistribuidorView(){
+    public void formDistribuidoresView(int op){
+        try{
+            FormularioDistribuidorController formDistribuidorView = (FormularioDistribuidorController)switchScene("FormularioDistribuidorView.fxml", 380, 520);
+            formDistribuidorView.setOp(op);
+            formDistribuidorView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void menuDistribuidorView(){
         try{
             MenuDistribuidorController menuDistribuidorView = (MenuDistribuidorController)switchScene("MenuDistribuidorView.fxml",1200,750);
             menuDistribuidorView.setStage(this);
@@ -102,6 +113,8 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+    
+    
 
     
 }

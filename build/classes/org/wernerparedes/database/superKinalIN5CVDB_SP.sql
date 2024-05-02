@@ -150,7 +150,9 @@ DELIMITER ;
 delimiter $$
 create procedure sp_listarDistribuidores()
 	begin
-		select * from Distribuidores;
+		select 
+			*
+        from Distribuidores;
     end $$
 delimiter ;
  
@@ -424,8 +426,13 @@ DELIMITER $$
 CREATE PROCEDURE sp_ListarDistribuidores()
 BEGIN
     SELECT
-       *
-		FROM Distribuidores;
+				Distribuidores.clienteId,
+                Distribuidores.nombreDistribuidor,
+                Distribuidores.direccionDistribuidor,
+                Distribuidores.nitDistribuidor,
+                Distribuidores.telefonoDistribuidor,
+                Distribuidores.web		
+                FROM Distribuidores;
 END $$
 DELIMITER ;
 

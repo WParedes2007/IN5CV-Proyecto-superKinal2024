@@ -150,7 +150,9 @@ DELIMITER ;
 delimiter $$
 create procedure sp_listarDistribuidores()
 	begin
-		select * from Distribuidores;
+		select 
+			*
+        from Distribuidores;
     end $$
 delimiter ;
  

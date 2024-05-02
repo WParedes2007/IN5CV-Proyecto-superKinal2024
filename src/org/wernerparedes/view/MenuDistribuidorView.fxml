@@ -12,8 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="1200.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="org.wernerparedes.controller.MenuDistribuidorController">
+<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.wernerparedes.controller.MenuDistribuidorController">
    <children>
       <ImageView fitHeight="750.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -22,12 +21,12 @@
       </ImageView>
       <TableView fx:id="tblDistribuidor" layoutX="320.0" layoutY="283.0" prefHeight="309.0" prefWidth="592.0" style="-fx-border-color: #130716; -fx-border-width: 5;">
          <columns>
-            <TableColumn fx:id="colDistibuidorId" prefWidth="117.0" style="-fx-border-color: #130716;" text="Distribuidor" />
+            <TableColumn fx:id="colDistribuidorId" prefWidth="117.0" style="-fx-border-color: #130716;" text="Distribuidor ID" />
             <TableColumn fx:id="colNombre" prefWidth="117.0" style="-fx-border-color: #130716;" text="Nombre" />
-            <TableColumn fx:id="colTelefono" prefWidth="117.0" style="-fx-border-color: #130716;" text="Telefono" />
             <TableColumn fx:id="colNit" prefWidth="117.0" style="-fx-border-color: #130716;" text="Nit" />
-            <TableColumn fx:id="colDireccion" minWidth="3.0" prefWidth="3.0" style="-fx-border-color: #130716;" text="Direccion" />
-            <TableColumn fx:id="colWeb" prefWidth="117.0" style="-fx-border-color: #130716;" text="Web" />
+            <TableColumn fx:id="colTelefono" prefWidth="117.0" style="-fx-border-color: #130716;" text="Telefono" />
+            <TableColumn fx:id="colDireccion" minWidth="0.0" prefWidth="0.0" style="-fx-border-color: #130716;" text="Direccion" />
+            <TableColumn fx:id="colWeb" prefWidth="120.0" style="-fx-border-color: #130716;" text="Web" />
          </columns>
       </TableView>
       <GridPane layoutX="48.0" layoutY="223.0" prefHeight="449.0" prefWidth="256.0">
