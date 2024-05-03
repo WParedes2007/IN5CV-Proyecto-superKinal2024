@@ -14,7 +14,7 @@ create table Compras(
 create table CategoriaProductos(
 	categoriaProductoId int not null auto_increment,
     nombreCategoria varchar(30)not null,
-    descripccionCategoria varchar(100)not null,
+    descripcionCategoria varchar(100)not null,
 	primary key PK_categoriaProductoId(categoriaProductoId)
 );
 
@@ -147,7 +147,7 @@ create table TicketSoporte(
 INSERT INTO Compras(fechaCompra, totalCompra)VALUES
  ('2024-04-19', 150.00);
  
-INSERT INTO CategoriaProductos(nombreCategoria, descripccionCategoria)VALUES
+INSERT INTO CategoriaProductos(nombreCategoria, descripcionCategoria)VALUES
 ('Electrónicos', 'Productos electrónicos y dispositivos.');
 
 INSERT INTO Cargos(nombreCargo, descripcionCargo)VALUES

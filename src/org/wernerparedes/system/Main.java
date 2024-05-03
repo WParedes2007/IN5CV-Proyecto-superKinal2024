@@ -13,8 +13,10 @@ import java.io.InputStream;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import org.wernerparedes.controller.FormularioCargoController;
 import org.wernerparedes.controller.FormularioClienteController;
 import org.wernerparedes.controller.FormularioDistribuidorController;
+import org.wernerparedes.controller.MenuCargoController;
 import org.wernerparedes.controller.MenuClienteController;
 import org.wernerparedes.controller.MenuDistribuidorController;
 import org.wernerparedes.controller.MenuPrincipalController;
@@ -92,9 +94,9 @@ public class Main extends Application {
      
     public void formDistribuidoresView(int op){
         try{
-            FormularioDistribuidorController formDistribuidorView = (FormularioDistribuidorController)switchScene("FormularioDistribuidorView.fxml", 380, 520);
-            formDistribuidorView.setOp(op);
-            formDistribuidorView.setStage(this);
+            FormularioDistribuidorController formDistribuidoresView = (FormularioDistribuidorController)switchScene("FormularioDistribuidorView.fxml", 380, 520);
+            formDistribuidoresView.setOp(op);
+            formDistribuidoresView.setStage(this);
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
@@ -104,6 +106,25 @@ public class Main extends Application {
         try{
             MenuDistribuidorController menuDistribuidorView = (MenuDistribuidorController)switchScene("MenuDistribuidorView.fxml",1200,750);
             menuDistribuidorView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+     public void formCargosView(int op){
+        try{
+            FormularioCargoController formCargosView = (FormularioCargoController)switchScene("FormularioCargoView.fxml", 380, 520);
+            formCargosView.setOp(op);
+            formCargosView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void menuCargoView(){
+        try{
+            MenuCargoController menuCargoView = (MenuCargoController)switchScene("MenuCargoView.fxml",1200,750);
+            menuCargoView.setStage(this);
         }catch(Exception e){
             System.out.println(e.getMessage());
         }

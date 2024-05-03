@@ -92,8 +92,8 @@ select * from clientes;
 DELIMITER $$
 	create procedure sp_agregarCargo(nomCar varchar(30),desCar varchar(100))
     begin
-		insert into Clientes(nombreCargo,descripcionCargo) values
-			(nomCa, desCar);
+		insert into Cargos(nombreCargo,descripcionCargo) values
+			(nomCar, desCar);
     end $$
 DELIMITER ;
  
@@ -134,15 +134,17 @@ create procedure sp_editarCargos(carId int, nomCar varchar(30), desCar varchar(1
             where cargoId = carId;			
     end $$
 delimiter ;
+
+
  
 -- CRUD DISTRIBUIDORES
 
 -- Agregar:Distribuidores
 DELIMITER $$
-	create procedure sp_agregarDistribuidores(nomDis varchar(30), dirDis varchar(200), nitDis varchar(15), telDis varchar(15), web varchar(50))
+	create procedure sp_agregarDistribuidores(nomDis varchar(30), dirDis varchar(200), nitDis varchar(15), telDis varchar(15), w varchar(50))
     begin
 		insert into Distribuidores(nombreDistribuidor,direccionDistribuidor,nitDistribuidor,telefonoDistribuidor,web) values
-			(nomDis, dirDis, nitDis, telDis, web);
+			(nomDis, dirDis, nitDis, telDis, w);
     end $$
 DELIMITER ;
  
@@ -408,68 +410,6 @@ BEGIN
         clienteId = cliId,
         empleadoId = empId
     WHERE facturaId = facId;
-END $$
-DELIMITER ;
-
--- CRUD Distribuidor
--- Agregar: Distribuidor
-DELIMITER $$
-CREATE PROCEDURE sp_AgregarDistribuidor(IN nom VARCHAR(30),IN dir VARCHAR(200),IN nit VARCHAR(15),IN tel VARCHAR(15),IN w VARCHAR(50))
-BEGIN
-    INSERT INTO Distribuidores(nombreDistribuidor, direccionDistribuidor, nitDistribuidor, telefonoDistribuidor, web)
-    VALUES (nom, dir, nit, tel, w);
-END $$
-DELIMITER ;
-
--- Listar: Distribuidor
-DELIMITER $$
-CREATE PROCEDURE sp_ListarDistribuidores()
-BEGIN
-    SELECT
-				Distribuidores.clienteId,
-                Distribuidores.nombreDistribuidor,
-                Distribuidores.direccionDistribuidor,
-                Distribuidores.nitDistribuidor,
-                Distribuidores.telefonoDistribuidor,
-                Distribuidores.web		
-                FROM Distribuidores;
-END $$
-DELIMITER ;
-
-
--- Eliminar: Distribuidor
-DELIMITER $$
-CREATE PROCEDURE sp_EliminarDistribuidor(IN disId INT)
-BEGIN
-    DELETE 
-		FROM Distribuidores
-		WHERE distribuidorId = disId;
-END $$
-DELIMITER ;
-
--- Buscar: Distribuidor
-DELIMITER $$
-CREATE PROCEDURE sp_BuscarDistribuidor(IN disId INT)
-BEGIN
-    SELECT
-        *
-		FROM Distribuidores
-		WHERE distribuidorId = disId;
-END $$
-DELIMITER ;
-
--- Editar: Distribuidor
-DELIMITER $$
-CREATE PROCEDURE sp_EditarDistribuidor(IN disId INT,IN nom VARCHAR(30),IN ape VARCHAR(200),IN nit VARCHAR(15),IN tel VARCHAR(15),IN w VARCHAR(50))
-BEGIN
-    UPDATE Distribuidores
-    SET
-        nombreDistribuidor = nom,
-        direccionDistribuidor = dir,
-        nitDistribuidor = nit,
-        telefonoDistribuidor = tel,
-        web = w
-    WHERE distribuidorId = disId;
 END $$
 DELIMITER ;
 

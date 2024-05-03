@@ -120,7 +120,7 @@ public class MenuDistribuidorController implements Initializable {
                 String telefono = resultSet.getString("telefonoDistribuidor");
                 String web = resultSet.getString("web");
                 
-                distribuidores.add(new Distribuidor(distribuidorId,nombre,direccion,nit,telefono, web));
+                distribuidores.add(new Distribuidor(distribuidorId,nombre,direccion,nit,telefono,web));
             }
         }catch(SQLException e){
             System.out.println(e.getMessage());

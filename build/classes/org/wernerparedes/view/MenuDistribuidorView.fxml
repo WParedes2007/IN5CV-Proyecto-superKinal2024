@@ -19,14 +19,14 @@
             <Image url="@../image/Menu%20Distribuidores.png" />
          </image>
       </ImageView>
-      <TableView fx:id="tblDistribuidor" layoutX="320.0" layoutY="283.0" prefHeight="309.0" prefWidth="592.0" style="-fx-border-color: #130716; -fx-border-width: 5;">
+      <TableView fx:id="tblDistribuidor" layoutX="260.0" layoutY="284.0" prefHeight="309.0" prefWidth="717.0" style="-fx-border-color: #130716; -fx-border-width: 5;">
          <columns>
-            <TableColumn fx:id="colDistribuidorId" prefWidth="117.0" style="-fx-border-color: #130716;" text="Distribuidor ID" />
-            <TableColumn fx:id="colNombre" prefWidth="117.0" style="-fx-border-color: #130716;" text="Nombre" />
-            <TableColumn fx:id="colNit" prefWidth="117.0" style="-fx-border-color: #130716;" text="Nit" />
+            <TableColumn fx:id="colDistribuidorId" prefWidth="91.0" style="-fx-border-color: #130716;" text="Distribuidor ID" />
+            <TableColumn fx:id="colNombre" prefWidth="143.0" style="-fx-border-color: #130716;" text="Nombre" />
+            <TableColumn fx:id="colDireccion" prefWidth="117.0" style="-fx-border-color: #130716;" text="Direccion" />
             <TableColumn fx:id="colTelefono" prefWidth="117.0" style="-fx-border-color: #130716;" text="Telefono" />
-            <TableColumn fx:id="colDireccion" minWidth="0.0" prefWidth="0.0" style="-fx-border-color: #130716;" text="Direccion" />
-            <TableColumn fx:id="colWeb" prefWidth="120.0" style="-fx-border-color: #130716;" text="Web" />
+            <TableColumn fx:id="colNit" prefWidth="120.0" style="-fx-border-color: #130716;" text="Nit" />
+            <TableColumn fx:id="colWeb" prefWidth="117.0" style="-fx-border-color: #130716;" text="Web" />
          </columns>
       </TableView>
       <GridPane layoutX="48.0" layoutY="223.0" prefHeight="449.0" prefWidth="256.0">
@@ -67,8 +67,8 @@
             <Font name="Arial Bold" size="22.0" />
          </font>
       </Button>
-      <TextField fx:id="tfDistribuidorId" layoutX="656.0" layoutY="244.0" prefHeight="25.0" prefWidth="201.0" promptText="Ingrese El ID Del Distribuidor A Buscar" style="-fx-border-color: #130716; -fx-border-width: 2;" />
-      <Button fx:id="btnBuscar" layoutX="868.0" layoutY="244.0" mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-border-color: #130716; -fx-border-width: 2; -fx-background-color: white;">
+      <TextField fx:id="tfDistribuidorId" layoutX="727.0" layoutY="248.0" prefHeight="25.0" prefWidth="201.0" promptText="Ingrese El ID Del Distribuidor A Buscar" style="-fx-border-color: #130716; -fx-border-width: 2;" />
+      <Button fx:id="btnBuscar" layoutX="939.0" layoutY="248.0" mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-border-color: #130716; -fx-border-width: 2; -fx-background-color: white;">
          <graphic>
             <ImageView fitHeight="24.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
                <image>

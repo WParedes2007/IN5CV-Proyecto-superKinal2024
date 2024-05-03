@@ -17,10 +17,10 @@ public class Conexion {
     private static Conexion instance;
     
     private String url = "jdbc:mysql://localhost:3306/superKinalIN5CVDB?serverTimeZone=GMT-6&useSSL=false";
-    //private String user = "Shiro";
-    private String user = "wernerParedes";
-    private String password = "MCRTBP";
-    //private String password = "1234";
+    private String user = "Shiro";
+    //private String user = "wernerParedes";
+    //private String password = "MCRTBP";
+    private String password = "1234";
     
     private Conexion(){
         try{
