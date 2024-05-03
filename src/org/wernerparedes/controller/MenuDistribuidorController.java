@@ -79,7 +79,7 @@ public class MenuDistribuidorController implements Initializable {
             }else{
                 tblDistribuidor.getItems().add(buscarDistribuidor());
                 colDistribuidorId.setCellValueFactory(new PropertyValueFactory<Distribuidor, Integer> ("distribuidorId"));
-                colNombre.setCellValueFactory(new PropertyValueFactory<Distribuidor, String> ("nombreDistribuidor"));
+                colNombre.setCellValueFactory(new PropertyValueFactory<Distribuidor, String> ("nombre"));
                 colDireccion.setCellValueFactory(new PropertyValueFactory<Distribuidor, String> ("direccionDistribuidor"));
                 colNit.setCellValueFactory(new PropertyValueFactory<Distribuidor, String> ("nitDistribuidor"));
                 colTelefono.setCellValueFactory(new PropertyValueFactory<Distribuidor, String> ("telefonoDistribuidor"));
@@ -94,12 +94,12 @@ public class MenuDistribuidorController implements Initializable {
     }  
     
     public void cargarDatos(){
-       tblDistribuidor.getItems().add(listarDistribuidores());
+       tblDistribuidor.setItems(listarDistribuidores());
        colDistribuidorId.setCellValueFactory(new PropertyValueFactory<Distribuidor, Integer> ("distribuidorId"));
-       colNombre.setCellValueFactory(new PropertyValueFactory<Distribuidor, String> ("nombreDistribuidor"));
-       colDireccion.setCellValueFactory(new PropertyValueFactory<Distribuidor, String> ("direccionDistribuidor"));
-       colNit.setCellValueFactory(new PropertyValueFactory<Distribuidor, String> ("nitDistribuidor"));
-       colTelefono.setCellValueFactory(new PropertyValueFactory<Distribuidor, String> ("telefonoDistribuidor"));
+       colNombre.setCellValueFactory(new PropertyValueFactory<Distribuidor, String> ("nombre"));
+       colDireccion.setCellValueFactory(new PropertyValueFactory<Distribuidor, String> ("direccion"));
+       colNit.setCellValueFactory(new PropertyValueFactory<Distribuidor, String> ("nit"));
+       colTelefono.setCellValueFactory(new PropertyValueFactory<Distribuidor, String> ("telefono"));
        colWeb.setCellValueFactory(new PropertyValueFactory<Distribuidor, String> ("web"));
 
     }
@@ -145,7 +145,7 @@ public class MenuDistribuidorController implements Initializable {
     public void eliminarDistribuidor(int disId){
         try{
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_EliminarDistribuidor(?)";
+            String sql = "call sp_eliminarDistribuidores(?)";
             statement = conexion.prepareStatement(sql);
             statement.setInt(1,disId);
             statement.execute();
@@ -169,7 +169,7 @@ public class MenuDistribuidorController implements Initializable {
         Distribuidor distribuidor = null;
         try{
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_BuscarDistribuidor(?)";
+            String sql = "call sp_buscarDistribuidores(?)";
             statement = conexion.prepareStatement(sql);
             statement.setInt(1, Integer.parseInt(tfDistribuidorId.getText()));
             resultSet = statement.executeQuery();

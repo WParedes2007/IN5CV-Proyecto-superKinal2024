@@ -74,7 +74,7 @@ public class MenuCargoController implements Initializable {
             if(tfCargoId.getText().equals("")){
                 cargarDatos();
             }else{
-                tblCargos.setItems(listarCargos());
+                tblCargos.getItems().add(buscarCargo());
                 colCargoId.setCellValueFactory(new PropertyValueFactory<Cargo, Integer>("cargoId"));
                 colNombreCargo.setCellValueFactory(new PropertyValueFactory<Cargo, String>("nombreCargo"));
                 colDescripcionCargo.setCellValueFactory(new PropertyValueFactory<Cargo, String>("descripcionCargo"));
@@ -155,8 +155,8 @@ public class MenuCargoController implements Initializable {
         }
     }
         
-        public Cargo buscarCliente(){
-        Cargo cargos = null;
+        public Cargo buscarCargo(){
+        Cargo cargo = null;
         try{
             conexion = Conexion.getInstance().obtenerConexion();
             String sql = "call sp_buscarCargo(?)";
@@ -169,7 +169,7 @@ public class MenuCargoController implements Initializable {
                 String nomCargo = resultSet.getString("nombreCargo");
                 String desCargo = resultSet.getString("descripcionCargo");
                 
-                cargos = (new Cargo(cargoId, nomCargo, desCargo));
+                cargo = (new Cargo(cargoId, nomCargo, desCargo));
             }
         }catch(SQLException e){
             System.out.println(e.getMessage());
@@ -188,7 +188,7 @@ public class MenuCargoController implements Initializable {
                 System.out.println(e.getMessage());
             }
         }
-        return cargos;
+        return cargo;
     }  
     
     public Main getStage() {

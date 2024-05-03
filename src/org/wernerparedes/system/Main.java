@@ -19,6 +19,7 @@ import org.wernerparedes.controller.FormularioDistribuidorController;
 import org.wernerparedes.controller.MenuCargoController;
 import org.wernerparedes.controller.MenuClienteController;
 import org.wernerparedes.controller.MenuDistribuidorController;
+import org.wernerparedes.controller.MenuEmpleadoController;
 import org.wernerparedes.controller.MenuPrincipalController;
 import org.wernerparedes.controller.MenuTicketSoporteController;
 /**
@@ -125,6 +126,15 @@ public class Main extends Application {
         try{
             MenuCargoController menuCargoView = (MenuCargoController)switchScene("MenuCargoView.fxml",1200,750);
             menuCargoView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void menuEmpleadoView(){
+        try{
+            MenuEmpleadoController menuEmpleadoView = (MenuEmpleadoController)switchScene("MenuEmpleadoView.fxml",1200,750);
+            menuEmpleadoView.setStage(this);
         }catch(Exception e){
             System.out.println(e.getMessage());
         }

@@ -29,7 +29,7 @@ private static CargoDTO instance;
         return cargo;
     }
 
-    public void setCargo(Cargo cargos) {
+    public void setCargo(Cargo cargo) {
         this.cargo = cargo;
     }
     

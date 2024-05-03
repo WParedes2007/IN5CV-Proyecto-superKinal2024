@@ -22,6 +22,7 @@
                   <MenuItem fx:id="btnTicketSoporte" mnemonicParsing="false" onAction="#handleButtonAction" text="TicketSoporte" />
                   <MenuItem fx:id="btnDistribuidor" mnemonicParsing="false" onAction="#handleButtonAction" text="Distribuidores" />
                   <MenuItem fx:id="btnCargos" mnemonicParsing="false" onAction="#handleButtonAction" text="Cargos" />
+                  <MenuItem fx:id="btnEmpleados" mnemonicParsing="false" onAction="#handleButtonAction" text="Empleados" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Reportes" />

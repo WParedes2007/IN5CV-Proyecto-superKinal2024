@@ -309,12 +309,15 @@ DELIMITER ;
 
 -- Listar: Empleados
 
+
 DELIMITER $$
 CREATE PROCEDURE sp_ListarEmpleados()
 BEGIN
-    SELECT
-        *
-		FROM Empleados;
+    select E1.empleadoId, E1.nombreEmpleado, E1.apellidoEmpleado, E1.sueldo, E1.horaEntrada, E1.horaSalida,
+        C.nombreCargo,
+        E2.nombreEmpleado from Empleados E1
+        join Cargos C on C.cargoId = E1.cargoId
+        left join Empleados E2 on E1.encargado = E2.empleadoId;
 END $$
 DELIMITER ;
 
@@ -355,6 +358,17 @@ BEGIN
     WHERE empleadoId = empId;
 END $$
 DELIMITER ;
+
+-- ASIGNAR ENCARGADO
+DELIMITER $$
+CREATE PROCEDURE sp_asignarEncargado(empId int, encId int)
+BEGIN
+	UPDATE empleados 
+		set encargadoId = encId
+			where empleadoId = empId;
+END $$
+DELIMITER ;
+
 
 -- CRUD Facturas
 
