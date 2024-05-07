@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="580.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="org.wernerparedes.controller.FormularioEmpleadoController">
+   <children>
+      <ImageView fitHeight="720.0" fitWidth="580.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/Formulario%20Empleados.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

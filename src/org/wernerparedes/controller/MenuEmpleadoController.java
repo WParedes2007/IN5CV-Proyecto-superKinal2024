@@ -59,11 +59,11 @@ public class MenuEmpleadoController implements Initializable {
            stage.menuPrincipalView(); 
         }
         else if(event.getSource() == btnAgregar){
-            stage.formDistribuidoresView(1);
+            stage.formEmpleadosView(1);
         }
         else if(event.getSource() == btnEditar){
             EmpleadoDTO.getEmpleadoDTO().setEmpleado((Empleado)tblEmpleados.getSelectionModel().getSelectedItem());
-            stage.formDistribuidoresView(2);
+            stage.formEmpleadosView(2);
         }
         else if(event.getSource() == btnEliminar){
             if(SuperKinalAlert.getInstance().mostrarAlertaConfirmacion(405).get() == ButtonType.OK){

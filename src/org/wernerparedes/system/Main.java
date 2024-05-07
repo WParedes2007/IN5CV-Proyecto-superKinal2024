@@ -16,6 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import org.wernerparedes.controller.FormularioCargoController;
 import org.wernerparedes.controller.FormularioClienteController;
 import org.wernerparedes.controller.FormularioDistribuidorController;
+import org.wernerparedes.controller.FormularioEmpleadoController;
 import org.wernerparedes.controller.MenuCargoController;
 import org.wernerparedes.controller.MenuClienteController;
 import org.wernerparedes.controller.MenuDistribuidorController;
@@ -112,7 +113,7 @@ public class Main extends Application {
         }
     }
     
-     public void formCargosView(int op){
+    public void formCargosView(int op){
         try{
             FormularioCargoController formCargosView = (FormularioCargoController)switchScene("FormularioCargoView.fxml", 380, 520);
             formCargosView.setOp(op);
@@ -126,6 +127,16 @@ public class Main extends Application {
         try{
             MenuCargoController menuCargoView = (MenuCargoController)switchScene("MenuCargoView.fxml",1200,750);
             menuCargoView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void formEmpleadosView(int op){
+        try{
+            FormularioEmpleadoController formEmpleadosView = (FormularioEmpleadoController)switchScene("FormularioEmpleadoView.fxml", 580, 720);
+            formEmpleadosView.setOp(op);
+            formEmpleadosView.setStage(this);
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
