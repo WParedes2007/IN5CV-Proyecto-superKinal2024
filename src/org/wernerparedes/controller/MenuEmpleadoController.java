@@ -77,14 +77,14 @@ public class MenuEmpleadoController implements Initializable {
             if(tfEmpleadoId.getText().equals("")){
                 cargarDatos();
             }else{
-                //tblEmpleados.getItems().add(buscarDistribuidor());
+                tblEmpleados.getItems().add(buscarEmpleado());
                 colEmpleadoId.setCellValueFactory(new PropertyValueFactory<Empleado, Integer> ("empleadoId"));
                 colNombreEmpleado.setCellValueFactory(new PropertyValueFactory<Empleado, String> ("nombreEmpleado"));
                 colApellidoEmpleado.setCellValueFactory(new PropertyValueFactory<Empleado, String> ("apellidoEmpleado"));
                 colSueldo.setCellValueFactory(new PropertyValueFactory<Empleado, String> ("sueldo"));
                 colEntrada.setCellValueFactory(new PropertyValueFactory<Empleado, String> ("horaEntrada"));
                 colSalida.setCellValueFactory(new PropertyValueFactory<Empleado, String> ("horaSalida"));
-                colCargoId.setCellValueFactory(new PropertyValueFactory<Empleado, String> ("cargoId"));
+                colCargoId.setCellValueFactory(new PropertyValueFactory<Empleado, String> ("cargo"));
                 colEncargado.setCellValueFactory(new PropertyValueFactory<Empleado, String> ("encargado"));
             }
         }
@@ -105,6 +105,7 @@ public class MenuEmpleadoController implements Initializable {
                 colSalida.setCellValueFactory(new PropertyValueFactory<Empleado, String> ("horaSalida"));
                 colCargoId.setCellValueFactory(new PropertyValueFactory<Empleado, String> ("cargo"));
                 colEncargado.setCellValueFactory(new PropertyValueFactory<Empleado, String> ("encargado"));
+                tblEmpleados.getSortOrder().add(colEmpleadoId);
 
     }
     
@@ -189,7 +190,7 @@ public class MenuEmpleadoController implements Initializable {
                 double sueldo = resultSet.getDouble("sueldo");
                 String horaEntrada = resultSet.getString("horaEntrada");
                 String horaSalida = resultSet.getString("horaSalida");
-                String cargo = resultSet.getString("nombreCargo");
+                String cargo = resultSet.getString("cargoId");
                 String encargado = resultSet.getString("nombreEmpleado");
                 
                 empleado = (new Empleado(empleadoId,nombreEmpleado,apellidoEmpleado,sueldo,horaEntrada,horaSalida,cargo,encargado));
