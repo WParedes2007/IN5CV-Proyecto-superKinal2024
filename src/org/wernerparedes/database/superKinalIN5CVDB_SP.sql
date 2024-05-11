@@ -197,7 +197,7 @@ delimiter ;
 DELIMITER $$
 	create procedure sp_agregarCategoriaProducto(nomCat varchar(30), desCat varchar(100))
     begin
-		insert into CategoriaProductos(nombreCategoria, descripccionCategoria) values
+		insert into CategoriaProductos(nombreCategoria, descripcionCategoria) values
 			(nomCat, desCat);
     end $$
 DELIMITER ;
@@ -235,7 +235,7 @@ create procedure sp_editarCategoriaProductos(catId int,nomCat varchar(30), desCa
         update CategoriaProductos
 			set
             nombreCategoria = nomCat,
-            descripccionCategoria = desCat
+            descripcionCategoria = desCat
             where categoriaProductoId = catId;			
     end $$
 delimiter ;
@@ -313,11 +313,13 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE sp_ListarEmpleados()
 BEGIN
-    select E1.empleadoId, E1.nombreEmpleado, E1.apellidoEmpleado, E1.sueldo, E1.horaEntrada, E1.horaSalida,
-        C.nombreCargo,
-        E2.nombreEmpleado from Empleados E1
-        join Cargos C on C.cargoId = E1.cargoId
-        left join Empleados E2 on E1.encargado = E2.empleadoId;
+    SELECT 
+        EP.empleadoId, EP.nombreEmpleado, EP.apellidoEmpleado, EP.sueldo, EP.horaEntrada, EP.horaSalida, 
+        CONCAT('Id: ', C.cargoId, ' | ', C.nombreCargo, ': ', C.descripcionCargo) AS 'cargo',
+        CONCAT('Id: ', E.empleadoId, ' | ', E.nombreEmpleado ,' ', E.apellidoEmpleado) AS 'encargado' 
+    FROM Empleados EP
+    JOIN Cargos C ON EP.cargoId = C.cargoId
+    LEFT JOIN Empleados E ON EP.encargado = E.empleadoId;
 END $$
 DELIMITER ;
 
@@ -369,6 +371,8 @@ BEGIN
 END $$
 DELIMITER ;
 
+call sp_ListarEmpleados();
+
 
 -- CRUD Facturas
 
@@ -386,8 +390,13 @@ DELIMITER $$
 CREATE PROCEDURE sp_ListarFacturas()
 BEGIN
     SELECT
-        *
-    FROM Facturas;
+			F.facturaId, F.fecha,F.hora, F.total,
+        		CONCAT('{Id:',C.clienteId,'}','{Nombre:',C.nombre, C.apellido,'}')AS 'Cliente',
+        		CONCAT('{Id:',E.empleadoId,'}','{Nombre:',E.nombreEmpleado, E.apellidoEmpleado,'}')AS 'Empleado'
+    FROM Facturas F
+	join Clientes C on F.clienteId = C.clienteId
+	join Empleados E on F.empleadoId = E.empleadoId;
+
 END $$
 DELIMITER ;
 
@@ -430,10 +439,10 @@ DELIMITER ;
 -- CRUD Productos
 -- Agregar: Productos
 DELIMITER $$
-CREATE PROCEDURE sp_AgregarProducto(IN nom VARCHAR(50),IN des VARCHAR(100),IN preuni DECIMAL(10,2),IN prema DECIMAL(10,2),IN preco DECIMAL(10,2),IN ima BLOB,IN disId INT,IN catId INT)
+CREATE PROCEDURE sp_agregarProducto(nom varchar(50),des varchar(100),cant int,pvu decimal(10,2),pvm decimal(10,2),pc decimal(10,2),img LONGBLOB,disId int,catId int)
 BEGIN
-    INSERT INTO Productos(nombreProducto, descripcionProductos, precioVentaUnitario, precioVentaMayor, precioCompra, imagenProducto, distribuidorId, categoriaProductoId)
-    VALUES (nom, des, preuni, prema, preco, ima, disId, catId);
+    INSERT INTO Productos(nombreProducto, descripcionProducto, cantidadStock, precioVentaUnitario, precioVentaMayor, precioCompra, imagenProducto, distribuidorId, categoriaProductoId)
+    VALUES (nom, des, cant, pvu, pvm, pc, img, disId, catId);
 END $$
 DELIMITER ;
 
@@ -441,9 +450,12 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE sp_ListarProductos()
 BEGIN
-    SELECT
-        *
-		FROM Productos;
+    SELECT P.productoId, P.nombreProducto, P.descripcionProducto, P.cantidadStock, P.precioVentaUnitario, P.precioVentaMayor,
+        CONCAT('{Id:', D.distribuidorId,'}','{Nombre:',D.nombreDistribuidor,'}')AS 'Distribuidor',
+		CONCAT('{Id:', C.categoriaProductoId,'}','{Nombre:',C.nombreCategoria,'}')AS 'Categoria'
+		FROM Productos P
+        join Distribuidores D on P.distribuidorId = D.distribuidorId
+		join CategoriaProductos C on P.categoriaProductoId = C.categoriaProductoId;
 END $$
 DELIMITER ;
 
@@ -462,29 +474,31 @@ DELIMITER $$
 CREATE PROCEDURE sp_BuscarProducto(IN proId INT)
 BEGIN
     SELECT
-        *
-		FROM Productos
+        P.productoId, P.nombreProducto, P.cantidadStock, P.precioVentaUnitario, P.precioVentaMayor, P.precioCompra, P.imagenProducto
+		FROM Productos P
 		WHERE productoId = proId;
 END $$
 DELIMITER ;
 
 -- Editar: Productos
 DELIMITER $$
-CREATE PROCEDURE sp_EditarProducto(IN proId INT,IN nom VARCHAR(50),IN des VARCHAR(100),IN preuni DECIMAL(10,2),IN prema DECIMAL(10,2),IN preco DECIMAL(10,2),IN ima BLOB,IN disId INT,IN catId INT)
+CREATE PROCEDURE sp_editarProducto(prodId int,nom varchar(50),des varchar(100),cant int,pvu decimal(10,2),pvm decimal(10,2),pc decimal(10,2),img LONGBLOB,disId int,catId int)
 BEGIN
     UPDATE Productos
     SET
         nombreProducto = nom,
-        descripcionProductos = des,
-        precioVentaUnitario = preuni,
-        precioVentaMayor = prema,
-        precioCompra = preco,
-        imagenProducto = ima,
+        descripcionProducto = des,
+        cantidadStock = cant,
+        precioVentaUnitario = pvu,
+        precioVentaMayor = pvm,
+        precioCompra = pc,
+        imagenProducto = img,
         distribuidorId = disId,
-        categoriaProductoId = catId
-    WHERE productoId = proId;
+        categoriaProductosId = catId
+    WHERE productoId = prodId;
 END $$
 DELIMITER ;
+
 
 -- CRUD Detalle Factura
 -- Agregar: Detalle Factura
@@ -667,7 +681,6 @@ CREATE PROCEDURE sp_ListarTicketsSoporte()
 BEGIN
     SELECT TS.ticketSoporteId, TS.descripcionTicket, TS.estatus,
 		CONCAT('{Id:',C.clienteId,'}','{Nombre:',C.nombre, C.apellido,'}')AS 'Cliente',
-		C.clienteId, C.nombre,C.apellido,
         TS.facturaId FROM TicketSoporte TS
         join Clientes C on TS.clienteId = C.clienteId;
 END $$
@@ -711,4 +724,8 @@ BEGIN
 END $$
 DELIMITER ;
 
+select * from productos;
 
+call sp_ListarFacturas();
+
+call sp_ListarProductos();

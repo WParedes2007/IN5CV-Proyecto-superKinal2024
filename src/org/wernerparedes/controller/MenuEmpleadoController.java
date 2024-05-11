@@ -124,8 +124,8 @@ public class MenuEmpleadoController implements Initializable {
                 double sueldo = resultSet.getDouble("sueldo");
                 String horaEntrada = resultSet.getString("horaEntrada");
                 String horaSalida = resultSet.getString("horaSalida");
-                String cargo = resultSet.getString("nombreCargo");
-                String encargado = resultSet.getString("nombreEmpleado");
+                String cargo = resultSet.getString("cargo");
+                String encargado = resultSet.getString("encargado");
 
                 empleados.add(new Empleado(empleadoId, nombreEmpleado, apellidoEmpleado, sueldo, horaEntrada,horaSalida,cargo,encargado));
             }

@@ -31,9 +31,7 @@
       <TextField fx:id="tfSueldo" layoutX="61.0" layoutY="432.0" maxHeight="1.0" minHeight="30.0" prefHeight="1.0" prefWidth="180.0" style="-fx-border-color: #130716; -fx-border-width: 5;" />
       <TextField fx:id="tfSalida" layoutX="61.0" layoutY="593.0" maxHeight="1.0" minHeight="30.0" prefHeight="1.0" prefWidth="180.0" style="-fx-border-color: #130716; -fx-border-width: 5;" />
       <TextField fx:id="tfEntrada" layoutX="61.0" layoutY="517.0" maxHeight="1.0" minHeight="30.0" prefHeight="1.0" prefWidth="180.0" style="-fx-border-color: #130716; -fx-border-width: 5;" />
-      <ComboBox fx:id="cmbEmpleados" layoutX="335.0" layoutY="533.0" prefWidth="150.0" style="-fx-border-color: #130716; -fx-border-width: 2;" />
-      <ComboBox fx:id="cmbCargos" layoutX="335.0" layoutY="585.0" prefWidth="150.0" style="-fx-border-color: #130716; -fx-border-width: 2;" />
-      <TextField fx:id="tfEncargado" layoutX="87.0" layoutY="665.0" maxHeight="1.0" minHeight="30.0" prefHeight="1.0" prefWidth="180.0" style="-fx-border-color: #130716; -fx-border-width: 5;" />
-      <TextField fx:id="tfCargo" layoutX="313.0" layoutY="665.0" maxHeight="1.0" minHeight="30.0" prefHeight="1.0" prefWidth="180.0" style="-fx-border-color: #130716; -fx-border-width: 5;" />
+      <ComboBox fx:id="cmbEmpleados" layoutX="101.0" layoutY="665.0" prefWidth="150.0" style="-fx-border-color: #130716; -fx-border-width: 2;" />
+      <ComboBox fx:id="cmbCargos" layoutX="320.0" layoutY="665.0" prefWidth="150.0" style="-fx-border-color: #130716; -fx-border-width: 2;" />
    </children>
 </AnchorPane>

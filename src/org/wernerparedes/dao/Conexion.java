@@ -18,10 +18,12 @@ public class Conexion {
     
     private String url = "jdbc:mysql://localhost:3306/superKinalIN5CVDB?serverTimeZone=GMT-6&useSSL=false";
     private String user = "Shiro";
+    private String password = "1234";
     //private String user = "wernerParedes";
     //private String user = "WernerParedes";
     //private String password = "MCRTBP";
-    private String password = "1234";
+    //private String user = "root";
+    //private String password = "2007";
     
     private Conexion(){
         try{

@@ -6,7 +6,7 @@ before insert on Facturas
 for each row
 begin
 	declare validacion boolean;
-    set validacion = fn_verificarCliente(new.nit);
+    set validacion = fn_verificarCliente(new.Cliente.nit);
     if !validacion then
 		signal sqlstate '45000'
 			set message_text = "La factura no se puede crear, porque el cliente no existe";

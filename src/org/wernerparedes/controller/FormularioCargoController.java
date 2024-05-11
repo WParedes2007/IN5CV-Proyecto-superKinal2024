@@ -126,7 +126,7 @@ public class FormularioCargoController implements Initializable {
                 }  
             }else if(op == 2){
                 if(!tfNombreCargo.getText().equals("") && !taDescripcion.getText().equals("")){
-                    if(SuperKinalAlert.getInstance().mostrarAlertaConfirmacion(106).get() == ButtonType.OK){
+                    if(SuperKinalAlert.getInstance().mostrarAlertaConfirmacion(406).get() == ButtonType.OK){
                         editarCargos();
                         CargoDTO.getCargoDTO().setCargo(null);
                         stage.menuCargoView();   

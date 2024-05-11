@@ -80,19 +80,21 @@ create table Distribuidores(
 create table Productos(
     productoId int not null auto_increment,
     nombreProducto varchar(50) not null,
-    descripcionProductos varchar (100),
+    descripcionProducto varchar (100),
+    cantidadStock int not null,
     precioVentaUnitario decimal(10,2) not null,
     precioVentaMayor decimal(10,2) not null,
-	precioCompra decimal(10,2) not null,
-    imagenProducto BLOB,
+    precioCompra decimal(10,2) not null,
+    imagenProducto LONGBLOB,
     distribuidorId int not null,
     categoriaProductoId int not null,
     primary key PK_productoId(productoId),
     constraint FK_Productos_Distribuidores foreign key Productos(distribuidorId)
-            references Distribuidores(distribuidorId),
+        references Distribuidores(DistribuidorId),
 	constraint FK_Productos_CategoriaProductos foreign key Productos(categoriaProductoId)
         references CategoriaProductos(categoriaProductoId)
 );
+
 
 create table DetalleFactura(
     detalleFacturaId int not null auto_increment,
@@ -166,8 +168,8 @@ INSERT INTO Facturas(fecha, hora, total, clienteId, empleadoId)VALUES
 INSERT INTO Distribuidores(nombreDistribuidor, direccionDistribuidor, nitDistribuidor, telefonoDistribuidor, web)VALUES
  ('Distribuidor XYZ', 'Avenida Principal', '987654-3', '555-1234', 'www.distribuidorxyz.com');
 
-INSERT INTO Productos(nombreProducto, descripcionProductos, precioVentaUnitario, precioVentaMayor, precioCompra, distribuidorId, categoriaProductoId)VALUES 
-('Producto ABC', 'Descripción del Producto ABC', 50.00, 45.00, 30.00, 1, 1);
+INSERT INTO Productos(nombreProducto, descripcionProducto, cantidadStock, precioVentaUnitario, precioVentaMayor, precioCompra, distribuidorId, categoriaProductoId)VALUES 
+('Producto ABC', 'Descripción del Producto ABC', 10, 50.00, 45.00, 30.00, 1, 1);
 
 INSERT INTO DetalleFactura(facturaId, productoId)VALUES
  (1, 1);

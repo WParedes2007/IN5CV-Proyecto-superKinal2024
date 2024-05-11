@@ -14,14 +14,20 @@ import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import org.wernerparedes.controller.FormularioCargoController;
+import org.wernerparedes.controller.FormularioCategoriaProductoController;
 import org.wernerparedes.controller.FormularioClienteController;
+import org.wernerparedes.controller.FormularioCompraController;
 import org.wernerparedes.controller.FormularioDistribuidorController;
 import org.wernerparedes.controller.FormularioEmpleadoController;
 import org.wernerparedes.controller.MenuCargoController;
+import org.wernerparedes.controller.MenuCategoriaProductoController;
 import org.wernerparedes.controller.MenuClienteController;
+import org.wernerparedes.controller.MenuCompraController;
 import org.wernerparedes.controller.MenuDistribuidorController;
 import org.wernerparedes.controller.MenuEmpleadoController;
+import org.wernerparedes.controller.MenuFacturaController;
 import org.wernerparedes.controller.MenuPrincipalController;
+import org.wernerparedes.controller.MenuProductoController;
 import org.wernerparedes.controller.MenuTicketSoporteController;
 /**
  *
@@ -146,6 +152,62 @@ public class Main extends Application {
         try{
             MenuEmpleadoController menuEmpleadoView = (MenuEmpleadoController)switchScene("MenuEmpleadoView.fxml",1200,750);
             menuEmpleadoView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void menuProductoView(){
+        try{
+            MenuProductoController menuProductoView = (MenuProductoController)switchScene("MenuProductoView.fxml",1280,870);
+            menuProductoView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void formCategoriaProductos(int op){
+        try{
+            FormularioCategoriaProductoController formCategoriaProductos = (FormularioCategoriaProductoController)switchScene("FormularioCategoriaProductoView.fxml", 380, 520);
+            formCategoriaProductos.setOp(op);
+            formCategoriaProductos.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void menuCategoriaProductoView(){
+        try{
+            MenuCategoriaProductoController menuCategoriaProductoView = (MenuCategoriaProductoController)switchScene("MenuCategoriaProductoView.fxml",1200,750);
+            menuCategoriaProductoView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void formComprasView(int op){
+        try{
+            FormularioCompraController formComprasView = (FormularioCompraController)switchScene("FormularioCompraView.fxml", 380, 520);
+            formComprasView.setOp(op);
+            formComprasView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void menuCompraView(){
+        try{
+            MenuCompraController menuCompraView = (MenuCompraController)switchScene("MenuCompraView.fxml",1200,750);
+            menuCompraView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+      public void menuFacturaView(){
+        try{
+            MenuFacturaController menuFacturaView = (MenuFacturaController)switchScene("MenuFacturaView.fxml",765,471);
+            menuFacturaView.setStage(this);
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
