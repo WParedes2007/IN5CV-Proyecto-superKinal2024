@@ -27,6 +27,18 @@ public class Producto {
 
     public Producto() {
     }
+    
+    public Producto(int productoId, String nombreProducto, String descripcionProductos, int cantidadStock, double precioVentaUnitario, double precioVentaMayor, double precioCompra, String distribuidor, String categoriaProducto) {
+        this.productoId = productoId;
+        this.nombreProducto = nombreProducto;
+        this.descripcionProductos = descripcionProductos;
+        this.cantidadStock = cantidadStock;
+        this.precioVentaUnitario = precioVentaUnitario;
+        this.precioVentaMayor = precioVentaMayor;
+        this.precioCompra = precioCompra;
+        this.distribuidor = distribuidor;
+        this.categoriaProducto = categoriaProducto;
+    }
 
     public Producto(int productoId, String nombreProducto, String descripcionProductos, int cantidadStock, double precioVentaUnitario, double precioVentaMayor, String distribuidor, String categoriaProducto) {
         this.productoId = productoId;
@@ -178,7 +190,7 @@ public class Producto {
 
     @Override
     public String toString() {
-        return "Producto{" + "productoId=" + productoId + ", nombreProducto=" + nombreProducto + ", descripcionProductos=" + descripcionProductos + ", precioVentaUnitario=" + precioVentaUnitario + ", precioVentaMayor=" + precioVentaMayor + ", precioCompra=" + precioCompra + ", imagenProducto=" + imagenProducto + ", distribuidorId=" + distribuidorId + ", distribuidor=" + distribuidor + ", categoriaProductoId=" + categoriaProductoId + ", categoriaProducto=" + categoriaProducto + '}';
+        return "Producto{ " + nombreProducto + " } Precio{ " + precioVentaUnitario +" }";
     }
     
     

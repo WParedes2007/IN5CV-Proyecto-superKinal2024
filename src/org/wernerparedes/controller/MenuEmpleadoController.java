@@ -53,7 +53,7 @@ public class MenuEmpleadoController implements Initializable {
     @FXML
     TableColumn colEmpleadoId,colNombreEmpleado,colApellidoEmpleado,colSueldo,colEntrada,colSalida,colCargoId,colEncargado;
     
-    @FXML
+    /*@FXML
     public void handleButtonAction(ActionEvent event){
         if(event.getSource() == btnRegresar){
            stage.menuPrincipalView(); 
@@ -86,6 +86,37 @@ public class MenuEmpleadoController implements Initializable {
                 colSalida.setCellValueFactory(new PropertyValueFactory<Empleado, String> ("horaSalida"));
                 colCargoId.setCellValueFactory(new PropertyValueFactory<Empleado, String> ("cargo"));
                 colEncargado.setCellValueFactory(new PropertyValueFactory<Empleado, String> ("encargado"));
+            }
+        }
+    }*/
+     @FXML
+    
+    public void handleButtonAction(ActionEvent event){
+        if(event.getSource() == btnAgregar){
+            stage.formEmpleadosView(1);
+        }else if(event.getSource() == btnEditar){
+            EmpleadoDTO.getEmpleadoDTO().setEmpleado((Empleado)tblEmpleados.getSelectionModel().getSelectedItem());
+            stage.formEmpleadosView(2);
+        }else if(event.getSource() == btnRegresar){
+            stage.menuPrincipalView();
+        }else if(event.getSource() == btnEliminar){
+            int empId = ((Empleado)tblEmpleados.getSelectionModel().getSelectedItem()).getEmpleadoId();
+            eliminarEmpleado(empId);
+            cargarDatos();
+        }else if (event.getSource() == btnBuscar){
+            tblEmpleados.getItems().clear();
+            if(tfEmpleadoId.getText().equals("")){
+                cargarDatos();
+            }else{
+                tblEmpleados.getItems().add(buscarEmpleado());
+                colEmpleadoId.setCellValueFactory(new PropertyValueFactory<Empleado, Integer>("empleadoId"));
+                colNombreEmpleado.setCellValueFactory(new PropertyValueFactory<Empleado, String>("nombreEmpleado"));
+                colApellidoEmpleado.setCellValueFactory(new PropertyValueFactory<Empleado, String>("apellidoEmpleado"));
+                colSueldo.setCellValueFactory(new PropertyValueFactory<Empleado, String>("sueldo"));
+                colEntrada.setCellValueFactory(new PropertyValueFactory<Empleado, String>("horaEntrada"));
+                colSalida.setCellValueFactory(new PropertyValueFactory<Empleado, String>("horaSalida"));
+                colCargoId.setCellValueFactory(new PropertyValueFactory<Empleado, String>("nombreCargo"));
+                colEncargado.setCellValueFactory(new PropertyValueFactory<Empleado, String>("Encargado"));
             }
         }
     }
@@ -190,8 +221,8 @@ public class MenuEmpleadoController implements Initializable {
                 double sueldo = resultSet.getDouble("sueldo");
                 String horaEntrada = resultSet.getString("horaEntrada");
                 String horaSalida = resultSet.getString("horaSalida");
-                String cargo = resultSet.getString("cargoId");
-                String encargado = resultSet.getString("nombreEmpleado");
+                String cargo = resultSet.getString("nombreCargo");
+                String encargado = resultSet.getString("Encargado");
                 
                 empleado = (new Empleado(empleadoId,nombreEmpleado,apellidoEmpleado,sueldo,horaEntrada,horaSalida,cargo,encargado));
             }

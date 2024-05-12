@@ -337,10 +337,13 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE sp_BuscarEmpleado(IN empId INT)
 BEGIN
-    SELECT
-        *
-		FROM Empleados
-		WHERE empleadoId = empId;
+    SELECT E1.empleadoId, E1.nombreEmpleado, E1.apellidoEmpleado, E1.sueldo, E1.horaEntrada, E1.horaSalida,
+           C.nombreCargo,
+           E2.nombreEmpleado AS Encargado
+    FROM Empleados E1
+    JOIN Cargos C ON C.cargoId = E1.cargoId
+    LEFT JOIN Empleados E2 ON E1.encargado = E2.empleadoId
+    WHERE E1.empleadoId = empId;
 END $$
 DELIMITER ;
 
@@ -625,11 +628,13 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE sp_ListarPromociones()
 BEGIN
-    SELECT
-        *
-		FROM Promociones;
+   select PS.promocionId, PS.precioPromocion, PS.descripcionPromocion, PS.fechaInicio, PS.fechaFinalizacion,  
+			P.nombreProducto from Promociones PS
+            join Productos P on PS.productoId = P.productoId;
 END $$
 DELIMITER ;
+
+call sp_ListarPromociones();
 
 -- Eliminar: Promociones
 DELIMITER $$
@@ -653,17 +658,21 @@ END $$
 DELIMITER ;
 
 -- Editar: Promociones
-DELIMITER $$
-CREATE PROCEDURE sp_EditarPromocion(IN detId INT,    IN comId INT,    IN proId INT)
-BEGIN
-    UPDATE DetalleCompra
-    SET
-        compraId = comId,
-        productoId = proId
-    WHERE detalleCompraId = detId;
-END $$
-DELIMITER ;
+delimiter $$
+create procedure sp_EditarPromocion(in promoId int, in prePro decimal(10, 2), in descPro varchar(100), in feIni date, in feFina date, in proId int)
+	begin
+		update Promociones
+			set 
+            precioPromocion = prePro,
+            descripcionPromocion = descPro,
+            fechaInicio = feIni,
+            fechaFinalizacion = feFina,
+            productoId = proId
+            where promocionId = promoId;
+    end $$
+delimiter ;
 
+call sp_EditarPromocion(1, 300.00, 'noseeee' , '2024-07-07', '2024-08-08' , 1);
 
 -- CRUD Ticket Soporte
 -- Agregar: Ticket Soporte
@@ -681,10 +690,14 @@ CREATE PROCEDURE sp_ListarTicketsSoporte()
 BEGIN
     SELECT TS.ticketSoporteId, TS.descripcionTicket, TS.estatus,
 		CONCAT('{Id:',C.clienteId,'}','{Nombre:',C.nombre, C.apellido,'}')AS 'Cliente',
-        TS.facturaId FROM TicketSoporte TS
-        join Clientes C on TS.clienteId = C.clienteId;
+		CONCAT('{Id:',F.facturaId,'}','{Hora:',F.hora,'} {Total:', F.total,'}')AS 'Factura'
+	FROM TicketSoporte TS
+        join Clientes C on TS.clienteId = C.clienteId
+        join Facturas F on TS.facturaId = F.facturaId;
 END $$
 DELIMITER ;
+
+call sp_ListarTicketsSoporte();
 
 -- Eliminar: Ticket Soporte
 DELIMITER $$
@@ -729,3 +742,5 @@ select * from productos;
 call sp_ListarFacturas();
 
 call sp_ListarProductos();
+
+call sp_ListarPromociones();

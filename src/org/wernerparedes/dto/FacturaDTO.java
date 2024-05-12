@@ -30,7 +30,7 @@ public class FacturaDTO {
         return factura
 ;    }
 
-    public void setEmpleado(Factura factura) {
+    public void setFactura(Factura factura) {
         this.factura = factura;
     }    
 }

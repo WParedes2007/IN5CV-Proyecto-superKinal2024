@@ -28,6 +28,7 @@ import org.wernerparedes.controller.MenuEmpleadoController;
 import org.wernerparedes.controller.MenuFacturaController;
 import org.wernerparedes.controller.MenuPrincipalController;
 import org.wernerparedes.controller.MenuProductoController;
+import org.wernerparedes.controller.MenuPromocionController;
 import org.wernerparedes.controller.MenuTicketSoporteController;
 /**
  *
@@ -208,6 +209,15 @@ public class Main extends Application {
         try{
             MenuFacturaController menuFacturaView = (MenuFacturaController)switchScene("MenuFacturaView.fxml",765,471);
             menuFacturaView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+      
+     public void menuPromocionView(){
+        try{
+            MenuPromocionController menuPromocionView = (MenuPromocionController)switchScene("MenuPromocionView.fxml",765,471);
+            menuPromocionView.setStage(this);
         }catch(Exception e){
             System.out.println(e.getMessage());
         }

@@ -89,6 +89,7 @@ public class MenuProductoController implements Initializable {
                 stage.menuPrincipalView();
             }else if(event.getSource() == btnGuardar){
                 agregarProducto();
+                cargarDatos();
             }else if(event.getSource() == btnBuscar){
                 Producto producto = buscarProducto();
                 if(producto != null){

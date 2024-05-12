@@ -58,7 +58,7 @@ public class FormularioDistribuidorController implements Initializable {
                 }  
             }else if(op == 2){
                 if(!tfNomDistribuidor.getText().equals("") && !tfDirDistribuidor.getText().equals("") && !tfNitDistribuidor.getText().equals("") && !tfTelDistribuidor.getText().equals("")){
-                    if(SuperKinalAlert.getInstance().mostrarAlertaConfirmacion(106).get() == ButtonType.OK){
+                    if(SuperKinalAlert.getInstance().mostrarAlertaConfirmacion(406).get() == ButtonType.OK){
                         editarDistribuidor();
                         DistribuidorDTO.getDistribuidorDTO().setDistribuidor(null);
                         stage.menuDistribuidorView();   

@@ -21,7 +21,7 @@
       <TextField fx:id="tfTicketId" editable="false" layoutX="36.0" layoutY="47.0" prefHeight="25.0" prefWidth="200.0" promptText="Ticket Id" style="-fx-border-color: #130716; -fx-border-width: 2;" />
       <TextArea fx:id="taDescripcion" layoutX="36.0" layoutY="115.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #130716; -fx-border-width: 5;" wrapText="true" />
       <ComboBox fx:id="cmbClientes" layoutX="258.0" layoutY="47.0" prefWidth="150.0" style="-fx-border-color: #130716; -fx-border-width: 2;" />
-      <ComboBox layoutX="415.0" layoutY="47.0" prefWidth="150.0" style="-fx-border-color: #130716; -fx-border-width: 2;" />
+      <ComboBox fx:id="cmbFacturas" layoutX="415.0" layoutY="47.0" prefWidth="150.0" style="-fx-border-color: #130716; -fx-border-width: 2;" />
       <TableView fx:id="tblTickets" layoutX="258.0" layoutY="115.0" onMouseClicked="#cargarDatosEditar" prefHeight="200.0" prefWidth="448.0" style="-fx-border-color: #130716; -fx-border-width: 4;">
         <columns>
           <TableColumn fx:id="colTicketId" prefWidth="75.0" style="-fx-border-color: #130716;" text="Ticket Id" />

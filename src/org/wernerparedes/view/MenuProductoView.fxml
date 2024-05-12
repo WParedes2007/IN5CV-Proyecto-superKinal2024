@@ -24,13 +24,13 @@
       <TextField fx:id="tfUnidad" layoutX="888.0" layoutY="280.0" maxHeight="1.0" minHeight="30.0" prefHeight="1.0" prefWidth="180.0" style="-fx-border-color: #130716; -fx-border-width: 5;" />
       <TextField fx:id="tfMayor" layoutX="888.0" layoutY="359.0" maxHeight="1.0" minHeight="30.0" prefHeight="1.0" prefWidth="180.0" style="-fx-border-color: #130716; -fx-border-width: 5;" />
       <TextField fx:id="tfCompra" layoutX="888.0" layoutY="441.0" maxHeight="1.0" minHeight="30.0" prefHeight="1.0" prefWidth="180.0" style="-fx-border-color: #130716; -fx-border-width: 5;" />
-      <ImageView fx:id="imgCargar" fitHeight="150.0" fitWidth="200.0" layoutX="968.0" layoutY="552.0" onDragDropped="#handleOnDrop" onDragOver="#handleOnDrag" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgCargar" fitHeight="150.0" fitWidth="200.0" layoutX="968.0" layoutY="615.0" onDragDropped="#handleOnDrop" onDragOver="#handleOnDrag" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/Upload.png" />
          </image>
       </ImageView>
       <TextArea fx:id="taDescripcionProducto" layoutX="1107.0" layoutY="195.0" prefHeight="112.0" prefWidth="140.0" style="-fx-border-color: #130716; -fx-border-width: 5;" wrapText="true" />
-      <Button fx:id="btnGuardar" layoutX="1020.0" layoutY="721.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="54.0" prefWidth="96.0" style="-fx-border-color: #9A2848; -fx-background-color: #130716; -fx-border-width: 5; borde: 10;" text="Guardar" textFill="WHITE">
+      <Button fx:id="btnGuardar" layoutX="1019.0" layoutY="769.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="38.0" prefWidth="103.0" style="-fx-border-color: #9A2848; -fx-background-color: #130716; -fx-border-width: 5; borde: 10;" text="Guardar" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="16.0" />
          </font>
@@ -45,23 +45,23 @@
             </ImageView>
          </graphic>
       </Button>
-      <Label fx:id="lblNombreProducto" layoutX="503.0" layoutY="119.0" prefHeight="23.0" prefWidth="61.0" textFill="WHITE">
+      <Label fx:id="lblNombreProducto" layoutX="515.0" layoutY="114.0" prefHeight="35.0" prefWidth="237.0" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
       <ImageView fx:id="imgMostrar" fitHeight="210.0" fitWidth="312.0" layoutX="58.0" layoutY="137.0" onDragDropped="#handleOnDrop" onDragOver="#handleOnDrag" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="lblUnitario" layoutX="588.0" layoutY="125.0" prefHeight="23.0" prefWidth="61.0" textFill="WHITE">
+      <Label fx:id="lblUnitario" layoutX="511.0" layoutY="234.0" prefHeight="35.0" prefWidth="103.0" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="lblMayor" layoutX="664.0" layoutY="125.0" prefHeight="23.0" prefWidth="61.0" textFill="WHITE">
+      <Label fx:id="lblMayor" layoutX="511.0" layoutY="201.0" prefHeight="35.0" prefWidth="103.0" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="lblCompra" layoutX="754.0" layoutY="125.0" prefHeight="23.0" prefWidth="61.0" textFill="WHITE">
+      <Label fx:id="lblCompra" layoutX="511.0" layoutY="160.0" prefHeight="35.0" prefWidth="103.0" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -84,7 +84,6 @@
          </columns>
       </TableView>
       <TextField fx:id="tfStock" layoutX="888.0" layoutY="499.0" maxHeight="1.0" minHeight="30.0" prefHeight="1.0" prefWidth="180.0" style="-fx-border-color: #130716; -fx-border-width: 5;" />
-      <Label fx:id="lblStock" layoutX="703.0" layoutY="339.0" prefHeight="17.0" prefWidth="61.0" />
       <Button fx:id="btnEliminar" layoutX="493.0" layoutY="705.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="87.0" prefWidth="142.0" style="-fx-border-color: #130716; -fx-border-width: 5; -fx-background-color: #9A2848;" text="Eliminar" textFill="#130716">
          <font>
             <Font name="Verdana Bold" size="20.0" />
@@ -92,5 +91,10 @@
       </Button>
       <ComboBox fx:id="cmbDistribuidores" layoutX="1093.0" layoutY="359.0" prefWidth="150.0" style="-fx-border-color: #130716; -fx-border-width: 2;" />
       <ComboBox fx:id="cmbCategorias" layoutX="1093.0" layoutY="441.0" prefWidth="150.0" style="-fx-border-color: #130716; -fx-border-width: 2;" />
+      <Label fx:id="lblStock" layoutX="509.0" layoutY="272.0" prefHeight="35.0" prefWidth="103.0" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

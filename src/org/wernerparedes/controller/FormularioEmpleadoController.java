@@ -46,7 +46,7 @@ public class FormularioEmpleadoController implements Initializable {
     @FXML
     ComboBox cmbEmpleados, cmbCargos;
     @FXML
-    TextField tfEmpleadoId, tfNombre, tfApellido, tfSueldo, tfEntrada, tfSalida, tfCargo, tfEncargado;
+    TextField tfEmpleadoId, tfNombre, tfApellido, tfSueldo, tfEntrada, tfSalida;
     @FXML
     Button btnGuardar, btnCancelar;
     @FXML
@@ -61,11 +61,11 @@ public class FormularioEmpleadoController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        cmbCargos.setItems(listarCargos());
-        cmbEmpleados.setItems(listarEmpleados());
         if(EmpleadoDTO.getEmpleadoDTO().getEmpleado() != null){
             cargarDatos(EmpleadoDTO.getEmpleadoDTO().getEmpleado());
         }
+        cmbCargos.setItems(listarCargos());
+        cmbEmpleados.setItems(listarEmpleados());
     }    
     public void cargarDatos(Empleado empleado){
         tfEmpleadoId.setText(Integer.toString(empleado.getEmpleadoId()));
@@ -79,7 +79,7 @@ public class FormularioEmpleadoController implements Initializable {
  
     }
     
-    public void cargarDatosEditar(){
+    /*public void cargarDatosEditar(){
         Empleado e = (Empleado)tblEmpleados.getSelectionModel().getSelectedItem();
         if(e != null){
             tfEmpleadoId.setText(Integer.toString(e.getEmpleadoId()));
@@ -91,7 +91,7 @@ public class FormularioEmpleadoController implements Initializable {
             cmbCargos.getSelectionModel().select(obtenerIndexCargo());
             cmbEmpleados.getSelectionModel().select(obtenerIndexEmpleado());
         }
-    }
+    }*/
     
     public Main getStage() {
         return stage;
@@ -162,33 +162,6 @@ public class FormularioEmpleadoController implements Initializable {
     }
     
     
-    
-    /*public void editarEncargado(){
-        try{
-            conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_asignarEncargado(?,?)";
-            statement = conexion.prepareStatement(sql);
-            statement.setInt(1, Integer.parseInt(tfEmpleadoId.getText()));
-            statement.setInt(2, ((Empleado)cmbEmpleados.getSelectionModel().getSelectedItem()).getEmpleadoId());
-            statement.execute();
-        }catch(SQLException e){
-            System.out.println(e.getMessage());
-        }finally{
-            try{
-                if(resultSet != null){
-                    resultSet.close();
-                }
-                if(statement != null){
-                    statement.close();
-                }
-                if(conexion != null){
-                    conexion.close();
-                }
-            }catch(SQLException e){
-                System.out.println(e.getMessage());
-            }
-        }
-    }*/
 
     @FXML
     public void handleButtonAction(ActionEvent event){
@@ -200,19 +173,19 @@ public class FormularioEmpleadoController implements Initializable {
                 if(!tfNombre.getText().equals("") && !tfApellido.getText().equals("")&& !tfSueldo.getText().equals("")&& !tfEntrada.getText().equals("")&& !tfSalida.getText().equals("")){
                     agregarEmpleado();
                     SuperKinalAlert.getInstance().mostrarAlertaInfo(401);
+                    stage.menuEmpleadoView();
                 }else{
                     SuperKinalAlert.getInstance().mostrarAlertaInfo(400);
                     tfNombre.requestFocus();
                     return;
                 }
-                stage.menuEmpleadoView();
             }else if(op == 2){
                 
                 if(!tfNombre.getText().equals("") && !tfApellido.getText().equals("")&& !tfSueldo.getText().equals("")&& !tfEntrada.getText().equals("")&& !tfSalida.getText().equals("")){
                      if(SuperKinalAlert.getInstance().mostrarAlertaConfirmacion(406).get() == ButtonType.OK){
                         editarEmpleado();
                         EmpleadoDTO.getEmpleadoDTO().setEmpleado(null);
-                        stage.menuClientesView();
+                        stage.menuEmpleadoView();
                      }
                     
                 }else{
@@ -224,7 +197,7 @@ public class FormularioEmpleadoController implements Initializable {
         }
     }
     
-/*    public void cargarDatosEditar(){
+    public void cargarDatosEditar(){
         Empleado e = (Empleado)tblEmpleados.getSelectionModel().getSelectedItem();
         if(e != null){
             tfEmpleadoId.setText(Integer.toString(e.getEmpleadoId()));
@@ -236,7 +209,7 @@ public class FormularioEmpleadoController implements Initializable {
             cmbCargos.getSelectionModel().select(obtenerIndexCargo());
             cmbEmpleados.getSelectionModel().select(obtenerIndexEmpleado());
         }
-    }*/
+    }
     
     public int obtenerIndexEmpleado(){
         int index = 0;
