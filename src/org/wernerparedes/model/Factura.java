@@ -113,6 +113,6 @@ public class Factura {
 
     @Override
     public String toString() {
-        return "FacturaId{" + facturaId + "} {Fecha: " + fecha + "} {Hora: " + hora + "} {Total: " + total + "}";
+        return "{Id:" + facturaId + "} {Fecha: " + fecha + "} {Hora: " + hora + "} {Total: " + total + "}";
     }
 }

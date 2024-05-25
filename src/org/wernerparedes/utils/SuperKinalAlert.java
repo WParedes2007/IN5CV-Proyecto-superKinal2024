@@ -37,6 +37,24 @@ public class SuperKinalAlert {
             alert.setHeaderText("Confirmacion De Registro");
             alert.setContentText("El Registro Se Ha Creado Con Exito");
             alert.showAndWait();
+        }else if(code == 602){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Usuario Incorrecto");
+            alert.setHeaderText("Usuario Incorrecto");
+            alert.setContentText("El Usuario Ingresado No Existe O No Es Correcto");
+            alert.showAndWait();
+        }else if(code == 005){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Contraseña Incorrecta");
+            alert.setHeaderText("Contraseña Incorrecta");
+            alert.setContentText("La Contraseña Ingresada No Existe O No Es Correcta");
+            alert.showAndWait();
+        }else if(code == 107){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Eliminacion No Completada");
+            alert.setHeaderText("Eliminacion No Completada");
+            alert.setContentText("El Registro Que Desea Eliminar Posee Llaves Foraneas, Lo Cual Impide Su Eliminacion");
+            alert.showAndWait();
         }
     }
     
@@ -56,5 +74,12 @@ public class SuperKinalAlert {
         action = alert.showAndWait();
         }
         return action;
+    }
+    
+    public void alertaSaludo(String usuario){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Bienvenido");
+        alert.setHeaderText("Bienvenido " + usuario);
+        alert.showAndWait();
     }
 }

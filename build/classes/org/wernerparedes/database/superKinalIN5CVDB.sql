@@ -4,6 +4,12 @@ create database if not exists superKinalIN5CVDB;
 
 use superKinalIN5CVDB;
 
+CREATE TABLE NivelesAcceso(
+	nivelAccesoId int not null auto_increment,
+    nivelAcceso varchar(40) not null,
+    primary key PK_nivelAccesoId(nivelAccesoId)
+);
+
 create table Compras(
 	compraId int not null auto_increment,
     fechaCompra Date not null,
@@ -50,6 +56,20 @@ create table Empleados(
 	references Empleados(empleadoId),
     constraint FK_Empleados_Cargos foreign key Empleados(cargoId)
 		references Cargos(cargoId)
+);
+
+CREATE TABLE Usuarios(
+	usuarioId int not null auto_increment,
+    usuario varchar(30) not null,
+    contrasenia varchar(100) not null,
+    nivelAccesoId int not null,
+    empleadoId int not null,
+    primary key PK_usuarioId(usuarioId),
+    constraint FK_Usuarios_NivelesAcceso foreign key Usuarios(nivelAccesoId)
+		references NivelesAcceso(nivelAccesoId),
+	constraint FK_Usuarios_Empleados foreign key Usuarios(empleadoId)
+		references Empleados(empleadoId)
+    
 );
 
 create table Facturas(
@@ -176,6 +196,11 @@ INSERT INTO DetalleFactura(facturaId, productoId)VALUES
  
 INSERT INTO DetalleCompra(compraId, productoId)VALUES 
 (1, 1);
+
+INSERT INTO NivelesAcceso(nivelAcceso)VALUES 
+('Admin'),
+('User');
+
 
 INSERT INTO Promociones(precioPromocion, descripcionPromocion, fechaInicio, fechaFinalizacion, productoId)VALUES
  (25.00, 'Promoción de Verano', '2024-06-01', '2024-06-30', 1);

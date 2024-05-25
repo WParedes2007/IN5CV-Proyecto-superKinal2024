@@ -28,10 +28,9 @@
       <TextField fx:id="tfEmpleadoId" editable="false" layoutX="61.0" layoutY="203.0" maxHeight="1.0" minHeight="30.0" prefHeight="1.0" prefWidth="180.0" style="-fx-border-color: #130716; -fx-border-width: 5;" />
       <TextField fx:id="tfNombre" layoutX="61.0" layoutY="280.0" maxHeight="1.0" minHeight="30.0" prefHeight="1.0" prefWidth="180.0" style="-fx-border-color: #130716; -fx-border-width: 5;" />
       <TextField fx:id="tfApellido" layoutX="61.0" layoutY="353.0" maxHeight="1.0" minHeight="30.0" prefHeight="1.0" prefWidth="180.0" style="-fx-border-color: #130716; -fx-border-width: 5;" />
-      <TextField fx:id="tfSueldo" layoutX="61.0" layoutY="432.0" maxHeight="1.0" minHeight="30.0" prefHeight="1.0" prefWidth="180.0" style="-fx-border-color: #130716; -fx-border-width: 5;" />
-      <TextField fx:id="tfSalida" layoutX="61.0" layoutY="593.0" maxHeight="1.0" minHeight="30.0" prefHeight="1.0" prefWidth="180.0" style="-fx-border-color: #130716; -fx-border-width: 5;" />
-      <TextField fx:id="tfEntrada" layoutX="61.0" layoutY="517.0" maxHeight="1.0" minHeight="30.0" prefHeight="1.0" prefWidth="180.0" style="-fx-border-color: #130716; -fx-border-width: 5;" />
-      <ComboBox fx:id="cmbEmpleados" layoutX="101.0" layoutY="665.0" prefWidth="150.0" style="-fx-border-color: #130716; -fx-border-width: 2;" />
-      <ComboBox fx:id="cmbCargos" layoutX="320.0" layoutY="665.0" prefWidth="150.0" style="-fx-border-color: #130716; -fx-border-width: 2;" />
+      <TextField fx:id="tfSueldo" layoutX="61.0" layoutY="432.0" maxHeight="1.0" minHeight="30.0" prefHeight="1.0" prefWidth="180.0" promptText="(10,2)" style="-fx-border-color: #130716; -fx-border-width: 5;" />
+      <TextField fx:id="tfEntrada" layoutX="61.0" layoutY="517.0" maxHeight="1.0" minHeight="30.0" prefHeight="1.0" prefWidth="180.0" promptText="hh:mm:ss" style="-fx-border-color: #130716; -fx-border-width: 5;" />
+      <TextField fx:id="tfSalida" layoutX="61.0" layoutY="593.0" maxHeight="1.0" minHeight="30.0" prefHeight="1.0" prefWidth="180.0" promptText="hh:mm:ss" style="-fx-border-color: #130716; -fx-border-width: 5;" />
+      <ComboBox fx:id="cmbCargos" layoutX="61.0" layoutY="664.0" prefWidth="150.0" style="-fx-border-color: #130716; -fx-border-width: 2;" />
    </children>
 </AnchorPane>

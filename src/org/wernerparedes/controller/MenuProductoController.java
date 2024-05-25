@@ -36,6 +36,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.TransferMode;
 import org.wernerparedes.dao.Conexion;
+import org.wernerparedes.dto.ProductoDTO;
 import org.wernerparedes.model.CategoriaProducto;
 import org.wernerparedes.model.Distribuidor;
 import org.wernerparedes.model.Producto;
@@ -137,6 +138,7 @@ public class MenuProductoController implements Initializable {
         
     }
     
+    
     public void cargarDatos(){
                 tblProductos.setItems(listarProductos());
                 colProductoId.setCellValueFactory(new PropertyValueFactory<Producto, Integer> ("productoId"));
@@ -151,45 +153,59 @@ public class MenuProductoController implements Initializable {
 
     }
     
-    public ObservableList<Producto> listarProductos(){
+    public void cargarDatosEditar(Producto producto){
+        tfProductoId.setText(Integer.toString(producto.getProductoId()));
+        tfNombreProducto.setText(producto.getNombreProducto());
+        taDescripcionProducto.setText(producto.getDescripcionProductos());
+        tfStock.setText(Integer.toString(producto.getCantidadStock()));
+        tfUnidad.setText(Double.toString(producto.getPrecioVentaUnitario()));
+        tfMayor.setText(Double.toString(producto.getPrecioVentaMayor()));
+        tfCompra.setText(Double.toString(producto.getPrecioCompra()));
+        cmbDistribuidores.getSelectionModel().select(obtenerIndexDistribuidor());
+        cmbCategorias.getSelectionModel().select(obtenerIndexCategoria());
+    }
+
+    
+    public ObservableList<Producto> listarProductos() {
         ArrayList<Producto> productos = new ArrayList<>();
-        try{
+ 
+        try {
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_ListarProductos";
+            String sql = "call sp_ListarProductos()";
             statement = conexion.prepareStatement(sql);
             resultSet = statement.executeQuery();
-            
-            while(resultSet.next()){
+            while (resultSet.next()) {
                 int productoId = resultSet.getInt("productoId");
                 String nombre = resultSet.getString("nombreProducto");
                 String descripcion = resultSet.getString("descripcionProducto");
-                int stock = resultSet.getInt("cantidadStock");
-                double unidad = resultSet.getDouble("precioVentaUnitario");
-                double mayor = resultSet.getDouble("precioVentaMayor");
-                String distribuidor = resultSet.getString("Distribuidor");
-                String categoria = resultSet.getString("Categoria");
-
-                productos.add(new Producto(productoId, nombre, descripcion, stock, unidad, mayor, distribuidor,categoria));
+                int cantidad = resultSet.getInt("cantidadStock");
+                Double precioU = resultSet.getDouble("precioVentaUnitario");
+                Double precioM = resultSet.getDouble("precioVentaMayor");
+                Double precioCompra = resultSet.getDouble("precioCompra");
+                Blob imagen = resultSet.getBlob("imagenProducto");
+                String distribuidorId = resultSet.getString("Distribuidor");
+                String categoriaProductoId = resultSet.getString("Categoria");
+ 
+                productos.add(new Producto(productoId, nombre, descripcion, cantidad, precioU, precioM, precioCompra, imagen, distribuidorId, categoriaProductoId));
             }
-        }catch(SQLException e){
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
-            
-        }finally{
-            try{
-                if(resultSet != null){
+        } finally {
+            try {
+                if (resultSet != null) {
                     resultSet.close();
                 }
-                if(statement != null){
+                if (statement != null) {
                     statement.close();
                 }
-                if(conexion != null){
+                if (conexion != null) {
                     conexion.close();
                 }
-            }catch(SQLException e){
-            System.out.println(e.getMessage());
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+ 
             }
         }
-        
         return FXCollections.observableList(productos);
     }
     
@@ -207,15 +223,61 @@ public class MenuProductoController implements Initializable {
             InputStream img = new FileInputStream(files.get(0));
             statement.setBinaryStream(7,img);
             statement.setInt(8,((Distribuidor)cmbDistribuidores.getSelectionModel().getSelectedItem()).getDistribuidorId());
-            //statement.setString(8, tfDistribuidor.getText());
             statement.setInt(9,((CategoriaProducto)cmbCategorias.getSelectionModel().getSelectedItem()).getCategoriaProductoId());
-            //statement.setString(9, tfCategoria.getText());
             statement.execute();
         }catch(Exception e){
             e.printStackTrace();
         }
     }
     
+public void editarProducto() {
+        try {
+            conexion = Conexion.getInstance().obtenerConexion();
+            String sql = "call sp_editarProducto(?,?,?,?,?,?,?,?,?,?)";
+            statement = conexion.prepareStatement(sql);
+
+            statement.setInt(1, Integer.parseInt(tfProductoId.getText()));
+            statement.setString(2, tfNombreProducto.getText());
+            if (taDescripcionProducto.getText().isEmpty()) {
+                statement.setString(3, null);
+            } else {
+                statement.setString(3, taDescripcionProducto.getText());
+            }
+            statement.setInt(4, Integer.parseInt(tfStock.getText()));
+            statement.setDouble(5, Double.parseDouble(tfUnidad.getText()));
+            statement.setDouble(6, Double.parseDouble(tfMayor.getText()));
+            statement.setDouble(7, Double.parseDouble(tfCompra.getText()));
+            if (imgCargar.getImage() == null) {
+                statement.setBinaryStream(8, null);
+            } else {
+                if(files != null){
+                    InputStream img = new FileInputStream(files.get(0));
+                    statement.setBinaryStream(8, img);
+                }else{
+                    statement.setBlob(8, ProductoDTO.getProductoDTO().getProducto().getImagenProducto());
+                }
+            }
+            statement.setInt(9, ((Distribuidor) cmbDistribuidores.getSelectionModel().getSelectedItem()).getDistribuidorId());
+            statement.setInt(10, ((CategoriaProducto) cmbCategorias.getSelectionModel().getSelectedItem()).getCategoriaProductoId());
+            statement.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                if (conexion != null) {
+                    conexion.close();
+                }
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+
+
     public Producto buscarProducto(){
         Producto producto = null;
         try{
@@ -379,40 +441,35 @@ public class MenuProductoController implements Initializable {
         return index;
     }
     
-    
-    
-    
-    
-    /*public void editarEmpleado(){
-        try{
-            conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_EditarEmpleado(?,?,?,?,?,?,?,?)";
-            statement = conexion.prepareStatement(sql);
-            statement.setInt(1, Integer.parseInt(tfProductoId.getText()));
-            statement.setString(2, tfNombreProducto.getText());
-            statement.setString(3, taDescripcionProducto.getText());
-            statement.setString(4, tfStock.getText());
-            statement.setString(5, tfUnidad.getText());
-            statement.setString(6, tfMayor.getText());
-            statement.setString(6, tfCompra.getText());
-            statement.setInt(7,((Cargo)cmbCargos.getSelectionModel().getSelectedItem()).getCargoId());
-            statement.setInt(8,((Empleado)cmbEmpleados.getSelectionModel().getSelectedItem()).getEmpleadoId());
-            statement.execute();
-            
-        }catch(SQLException e){
-            System.out.println(e.getMessage());
-        }finally{
-            try{
-                if(statement != null){
-                    statement.close();
+    public void mostrarImagen() {
+        Producto p = (Producto) tblProductos.getSelectionModel().getSelectedItem();
+        if (p != null) {
+            Blob img = p.getImagenProducto();
+            if (img != null) {
+                try {
+                    /*lblNombreProducto.setText(p.getNombreProducto());
+                    lblStock.setText(Integer.toString(p.getCantidadStock()));
+                    lblUnitario.setText(Double.toString(p.getPrecioVentaUnitario()));
+                    lblMayor.setText(Double.toString(p.getPrecioVentaMayor()));
+                    lblCompra.setText(Double.toString(p.getPrecioCompra()));*/
+                    InputStream inputStream = img.getBinaryStream();
+                    Image image = new Image(inputStream);
+                    imgMostrar.setImage(image);
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-                if(conexion != null){
-                    conexion.close();
-                }
-            }catch(SQLException e){
+            } else {
+                imgMostrar.setImage(null);
             }
+        }else{
+            imgMostrar.setImage(null);
         }
-    }*/
+    }
+ 
+    
+    
+    
+    
     
     public Main getStage() {
         return stage;

@@ -126,10 +126,23 @@ public class Empleado {
         this.encargado = encargado;
     }
 
+
     @Override
     public String toString() {
-        return "{Id: " + empleadoId + "}{Nombre: " + nombreEmpleado +  " " + apellidoEmpleado + '}';
+        return "{Id: " + empleadoId + "} {" + nombreEmpleado + " " + apellidoEmpleado + "}";
     }
+    
+    /*@Override
+    public String toString() {
+        return "Id: " + empleadoId + " | " + nombreEmpleado + " " + apellidoEmpleado + "}";
+    }*/
+
+    /*Override
+    public String toString() {
+        return "{Id: " + empleadoId + "} {Nombre: " + nombreEmpleado + " " + apellidoEmpleado + "} {Sueldo: " + sueldo + "Hora: }" + horaEntrada + "/" + horaSalida + "} {Cargo: " + cargo + "} {Encargado:" + encargado + '}';
+    }*/
+    
+    
     
     
 }

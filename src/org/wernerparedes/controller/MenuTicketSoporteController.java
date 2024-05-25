@@ -75,6 +75,7 @@ public class MenuTicketSoporteController implements Initializable {
         }
     }
     
+    
     public void vaciarCampos(){
         tfTicketId.clear();
         taDescripcion.clear();
@@ -97,8 +98,8 @@ public class MenuTicketSoporteController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         cargarCmbEstatus();
-        cmbFacturas.setItems(listarFacturas());
         cmbClientes.setItems(listarClientes());
+        cmbFacturas.setItems(listarFacturas());
         cargarDatos();
     }    
     
@@ -293,12 +294,13 @@ public class MenuTicketSoporteController implements Initializable {
             taDescripcion.setText(ts.getDescripcionTicket());
             cmbEstatus.getSelectionModel().select(0);
             cmbClientes.getSelectionModel().select(obtenerIndexCliente());
+            cmbFacturas.getSelectionModel().select(obtenerIndexFactura());
         }
     }
     
     public int obtenerIndexCliente(){
         int index = 0;
-        for(int i = 0 ; i <= cmbClientes.getItems().size() ; i++){
+        for(int i = 0 ; i < cmbClientes.getItems().size() ; i++){
             String clienteCmb = cmbClientes.getItems().get(i).toString();
             String clienteTbl = ((TicketSoporte)tblTickets.getSelectionModel().getSelectedItem()).getCliente();
             if(clienteCmb.equals(clienteTbl)){
@@ -311,7 +313,7 @@ public class MenuTicketSoporteController implements Initializable {
     
     public int obtenerIndexFactura(){
         int index = 0;
-        for(int i = 0 ; i <= cmbFacturas.getItems().size() ; i++){
+        for(int i = 0 ; i < cmbFacturas.getItems().size() ; i++){
             String facturaCmb = cmbFacturas.getItems().get(i).toString();
             String facturaTbl = ((TicketSoporte)tblTickets.getSelectionModel().getSelectedItem()).getFactura();
             if(facturaCmb.equals(facturaTbl)){

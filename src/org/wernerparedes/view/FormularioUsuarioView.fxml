@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="520.0" prefWidth="380.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.wernerparedes.controller.FormularioUsuarioController">
+   <children>
+      <ImageView fitHeight="520.0" fitWidth="380.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/Registrar%20Usuarios.png" />
+         </image>
+      </ImageView>
+      <ComboBox fx:id="cmbEmpleados" layoutX="31.0" layoutY="342.0" prefWidth="150.0" style="-fx-border-color: #130716; -fx-border-width: 2;" />
+      <ComboBox fx:id="cmbNivelesAccesos" layoutX="212.0" layoutY="342.0" prefWidth="150.0" style="-fx-border-color: #130716; -fx-border-width: 2;" />
+      <TextField fx:id="tfUser" layoutX="100.0" layoutY="157.0" maxHeight="1.0" minHeight="30.0" prefHeight="1.0" prefWidth="180.0" style="-fx-border-color: #130716; -fx-border-width: 5;" />
+      <PasswordField fx:id="tfPassword" layoutX="100.0" layoutY="254.0" maxHeight="1.0" minHeight="30.0" prefHeight="1.0" prefWidth="180.0" style="-fx-border-color: #130716; -fx-border-width: 5;" />
+      <Button fx:id="btnRegistrar" layoutX="225.0" layoutY="401.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="53.0" prefWidth="133.0" style="-fx-border-color: #9A2848; -fx-background-color: #130716; -fx-border-width: 5; borde: 10;" text="Registrarse" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnEmpleado" layoutX="34.0" layoutY="401.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="53.0" prefWidth="133.0" style="-fx-border-color: #9A2848; -fx-background-color: #130716; -fx-border-width: 5; borde: 10;" text="Crear Empleado" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="11.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

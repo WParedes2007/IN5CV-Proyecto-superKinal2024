@@ -44,7 +44,7 @@ public class FormularioEmpleadoController implements Initializable {
     private static ResultSet resultSet = null;
     
     @FXML
-    ComboBox cmbEmpleados, cmbCargos;
+    ComboBox cmbCargos;
     @FXML
     TextField tfEmpleadoId, tfNombre, tfApellido, tfSueldo, tfEntrada, tfSalida;
     @FXML
@@ -55,43 +55,41 @@ public class FormularioEmpleadoController implements Initializable {
     
 
  
- 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        cmbCargos.setItems(listarCargos());
         if(EmpleadoDTO.getEmpleadoDTO().getEmpleado() != null){
             cargarDatos(EmpleadoDTO.getEmpleadoDTO().getEmpleado());
         }
-        cmbCargos.setItems(listarCargos());
-        cmbEmpleados.setItems(listarEmpleados());
     }    
     public void cargarDatos(Empleado empleado){
         tfEmpleadoId.setText(Integer.toString(empleado.getEmpleadoId()));
         tfNombre.setText(empleado.getNombreEmpleado());
         tfApellido.setText(empleado.getApellidoEmpleado());
-        tfSueldo.setText(Double.toString(empleado.getSueldo()));
+        double sueldo = empleado.getSueldo();
+        tfSueldo.setText(Double.toString(sueldo));
         tfEntrada.setText(empleado.getHoraEntrada());
         tfSalida.setText(empleado.getHoraSalida());
-        cmbCargos.getSelectionModel().select(obtenerIndexCargo());
-        cmbEmpleados.getSelectionModel().select(obtenerIndexEmpleado());
- 
+        cmbCargos.getSelectionModel().select(obtenerIndexCargo()); 
     }
     
-    /*public void cargarDatosEditar(){
-        Empleado e = (Empleado)tblEmpleados.getSelectionModel().getSelectedItem();
-        if(e != null){
-            tfEmpleadoId.setText(Integer.toString(e.getEmpleadoId()));
-            tfNombre.setText(e.getNombreEmpleado());
-            tfApellido.setText(e.getApellidoEmpleado());
-            tfSueldo.setText(Double.toString(e.getSueldo()));
-            tfEntrada.setText(e.getHoraEntrada());
-            tfSalida.setText(e.getHoraSalida());
-            cmbCargos.getSelectionModel().select(obtenerIndexCargo());
-            cmbEmpleados.getSelectionModel().select(obtenerIndexEmpleado());
+     public int obtenerIndexCargo(){
+       int index = 0;
+        for(int i = 0 ; i < cmbCargos.getItems().size() ; i++){
+            String cargoIdCmb = cmbCargos.getItems().get(i).toString();
+            String empleadoDTO = EmpleadoDTO.getEmpleadoDTO().getEmpleado().getCargo();
+            if(cargoIdCmb.equals(empleadoDTO)){
+                index = i;
+                break;
+            }
         }
-    }*/
+        return index;
+    }
+     
+     public void cargarCmbEstatus(){
+        cmbCargos.getItems().add("");
+    }
+    
     
     public Main getStage() {
         return stage;
@@ -107,16 +105,15 @@ public class FormularioEmpleadoController implements Initializable {
     public void agregarEmpleado(){
         try{
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_AgregarEmpleado(?,?,?,?,?,?,?)";
+            String sql = "call sp_AgregarEmpleado(?,?,?,?,?,?)";
             statement = conexion.prepareStatement(sql);
             statement.setString(1, tfNombre.getText());
             statement.setString(2, tfApellido.getText());
-            statement.setString(3, tfSueldo.getText());
+            double sueldo = Double.parseDouble(tfSueldo.getText());
+            statement.setDouble(3, sueldo);
             statement.setString(4, tfEntrada.getText());
             statement.setString(5, tfSalida.getText());
             statement.setInt(6,((Cargo)cmbCargos.getSelectionModel().getSelectedItem()).getCargoId());
-            statement.setInt(7,((Empleado)cmbEmpleados.getSelectionModel().getSelectedItem()).getEmpleadoId());
- 
             statement.execute();
         }catch(SQLException e){
             System.out.println(e.getMessage());
@@ -134,16 +131,16 @@ public class FormularioEmpleadoController implements Initializable {
     public void editarEmpleado(){
         try{
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_EditarEmpleado(?,?,?,?,?,?,?,?)";
+            String sql = "call sp_EditarEmpleado(?,?,?,?,?,?,?)";
             statement = conexion.prepareStatement(sql);
             statement.setInt(1, Integer.parseInt(tfEmpleadoId.getText()));
             statement.setString(2, tfNombre.getText());
             statement.setString(3, tfApellido.getText());
-            statement.setString(4, tfSueldo.getText());
+            double sueldo = Double.parseDouble(tfSueldo.getText());
+            statement.setDouble(4, sueldo);
             statement.setString(5, tfEntrada.getText());
             statement.setString(6, tfSalida.getText());
             statement.setInt(7,((Cargo)cmbCargos.getSelectionModel().getSelectedItem()).getCargoId());
-            statement.setInt(8,((Empleado)cmbEmpleados.getSelectionModel().getSelectedItem()).getEncargadoId());
             statement.execute();
             
         }catch(SQLException e){
@@ -193,37 +190,13 @@ public class FormularioEmpleadoController implements Initializable {
                     tfNombre.requestFocus();
                     return;
                 }
+            }else if(op == 3){
+                agregarEmpleado();
+                stage.formUsuariosView();
             }
         }
     }
     
-    public void cargarDatosEditar(){
-        Empleado e = (Empleado)tblEmpleados.getSelectionModel().getSelectedItem();
-        if(e != null){
-            tfEmpleadoId.setText(Integer.toString(e.getEmpleadoId()));
-            tfNombre.setText(e.getNombreEmpleado());
-            tfApellido.setText(e.getApellidoEmpleado());
-            tfSueldo.setText(Double.toString(e.getSueldo()));
-            tfEntrada.setText(e.getHoraEntrada());
-            tfEntrada.setText(e.getHoraSalida());
-            cmbCargos.getSelectionModel().select(obtenerIndexCargo());
-            cmbEmpleados.getSelectionModel().select(obtenerIndexEmpleado());
-        }
-    }
-    
-    public int obtenerIndexEmpleado(){
-        int index = 0;
-        for(int i = 0 ; i <= cmbEmpleados.getItems().size() ; i++){
-            String empleadoCmb = cmbEmpleados.getItems().get(i).toString();
-            String empleadoTbl = ((Empleado)tblEmpleados.getSelectionModel().getSelectedItems()).getEncargado();
-            if(empleadoCmb.equals(empleadoTbl)){
-                index = i;
-                break;
-            }
-            
-        }
-        return index;
-    }
     
     public ObservableList<Cargo> listarCargos(){
         ArrayList<Cargo> cargos = new ArrayList<>();
@@ -261,59 +234,6 @@ public class FormularioEmpleadoController implements Initializable {
         return FXCollections.observableList(cargos);
     }
     
-    public ObservableList<Empleado> listarEmpleados(){
-        ArrayList<Empleado> empleados = new ArrayList<>();
-        try{
-            conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_ListarEmpleados";
-            statement = conexion.prepareStatement(sql);
-            resultSet = statement.executeQuery();
-            
-            while(resultSet.next()){
-                int empleadoId = resultSet.getInt("empleadoId");
-                String nombreEmpleado = resultSet.getString("nombreEmpleado");
-                String apellidoEmpleado = resultSet.getString("apellidoEmpleado");
-                double sueldo = resultSet.getDouble("sueldo");
-                String horaEntrada = resultSet.getString("horaEntrada");
-                String horaSalida = resultSet.getString("horaSalida");
-                String cargo = resultSet.getString("cargo");
-                String encargado = resultSet.getString("encargado");
-
-                empleados.add(new Empleado(empleadoId, nombreEmpleado, apellidoEmpleado, sueldo, horaEntrada,horaSalida,cargo,encargado));
-            }
-        }catch(SQLException e){
-            System.out.println(e.getMessage());
-            
-        }finally{
-            try{
-                if(resultSet != null){
-                    resultSet.close();
-                }
-                if(statement != null){
-                    statement.close();
-                }
-                if(conexion != null){
-                    conexion.close();
-                }
-            }catch(SQLException e){
-            System.out.println(e.getMessage());
-            }
-        }
-        
-        return FXCollections.observableList(empleados);
-    }
     
-     public int obtenerIndexCargo(){
-        int index = 0;
-        for(int i = 0 ; i <= cmbEmpleados.getItems().size() ; i++){
-            String cargoCmb = cmbEmpleados.getItems().get(i).toString();
-            String cargoTbl = ((Empleado)tblEmpleados.getSelectionModel().getSelectedItem()).getCargo();
-            if(cargoCmb.equals(cargoTbl)){
-                index = i;
-                break;
-            }
-        }
-        return index;
-    }
     
 }

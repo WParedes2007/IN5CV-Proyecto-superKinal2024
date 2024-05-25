@@ -1,5 +1,8 @@
 use superKinalIN5CVDB;
 
+-- USUARIOS
+
+
 -- CRUD CLIENTES
 
 DELIMITER $$
@@ -300,10 +303,10 @@ DELIMITER ;
 -- Agregar: Empleados
 
 DELIMITER $$
-CREATE PROCEDURE sp_AgregarEmpleado(IN nom VARCHAR(30),IN ape VARCHAR(30),IN sue DECIMAL(10,2),IN horen TIME,IN horsa TIME,IN carId INT,IN enc INT)
+CREATE PROCEDURE sp_AgregarEmpleado(IN nom VARCHAR(30),IN ape VARCHAR(30),IN sue DECIMAL(10,2),IN horen TIME,IN horsa TIME,IN carId INT)
 BEGIN
-    INSERT INTO Empleados(nombreEmpleado, apellidoEmpleado, sueldo, horaEntrada, horaSalida, cargoId, encargado)
-    VALUES (nom, ape, sue, horen, horsa, carId, enc);
+    INSERT INTO Empleados(nombreEmpleado, apellidoEmpleado, sueldo, horaEntrada, horaSalida, cargoId)
+    VALUES (nom, ape, sue, horen, horsa, carId);
 END $$
 DELIMITER ;
 
@@ -349,7 +352,7 @@ DELIMITER ;
 
 -- Editar: Empleados
 DELIMITER $$
-CREATE PROCEDURE sp_EditarEmpleado(IN empId INT,IN nom VARCHAR(30),IN ape VARCHAR(30),IN sue DECIMAL(10,2),IN horen TIME,IN horsa TIME,IN carId INT,IN enc INT)
+CREATE PROCEDURE sp_EditarEmpleado(IN empId INT,IN nom VARCHAR(30),IN ape VARCHAR(30),IN sue DECIMAL(10,2),IN horen TIME,IN horsa TIME,IN carId INT)
 BEGIN
     UPDATE Empleados
     SET
@@ -358,18 +361,17 @@ BEGIN
         sueldo = sue,
         horaEntrada = horen,
         horaSalida = horsa,
-        cargoId = carId,
-        encargado = enc
+        cargoId = carId
     WHERE empleadoId = empId;
 END $$
 DELIMITER ;
 
 -- ASIGNAR ENCARGADO
 DELIMITER $$
-CREATE PROCEDURE sp_asignarEncargado(empId int, encId int)
+CREATE PROCEDURE sp_asignarEncargado(empId int, enc int)
 BEGIN
 	UPDATE empleados 
-		set encargadoId = encId
+		set encargado = enc
 			where empleadoId = empId;
 END $$
 DELIMITER ;
@@ -453,7 +455,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE sp_ListarProductos()
 BEGIN
-    SELECT P.productoId, P.nombreProducto, P.descripcionProducto, P.cantidadStock, P.precioVentaUnitario, P.precioVentaMayor,
+    SELECT P.productoId, P.nombreProducto, P.descripcionProducto, P.cantidadStock, P.precioVentaUnitario, P.precioVentaMayor, P.precioCompra, P.imagenProducto,
         CONCAT('{Id:', D.distribuidorId,'}','{Nombre:',D.nombreDistribuidor,'}')AS 'Distribuidor',
 		CONCAT('{Id:', C.categoriaProductoId,'}','{Nombre:',C.nombreCategoria,'}')AS 'Categoria'
 		FROM Productos P
@@ -518,8 +520,16 @@ DELIMITER $$
 CREATE PROCEDURE sp_ListarDetallesFactura()
 BEGIN
     SELECT
-        *
-		FROM DetalleFactura;
+        F.facturaId,
+        concat('Id: ', P.productoId, '|', P.nombreProducto) as 'Producto',
+        concat('Id: ', C.clienteId, '|', C.nombre) as 'Cliente',
+        concat('Id: ', E.empleadoId, '|', E.nombreEmpleado) as 'Empleado',
+        F.fecha, F.hora, F.total
+		FROM DetalleFactura D
+        Join Productos P on D.productoId = P.productoId
+        Join Facturas F on D.facturaId = F.facturaId
+        Join Clientes C on F.clienteId = C.clienteId
+        Join Empleados E on F.empleadoId = E.empleadoId;
 END $$
 DELIMITER ;
 
@@ -575,6 +585,18 @@ BEGIN
     SELECT
         *
 		FROM DetalleCompra;
+END $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE sp_ListarDetallesCompra()
+BEGIN
+    SELECT
+        C.compraId, C.fechaCompra, C.totalCompra,
+        concat('Id: ', P.productoId, '|', P.nombreProducto) as 'Producto'
+		FROM DetalleCompra D
+        Join Productos P on D.productoId = P.productoId
+        Join Compras C on D.compraId = C.compraId;
 END $$
 DELIMITER ;
 
@@ -737,10 +759,26 @@ BEGIN
 END $$
 DELIMITER ;
 
-select * from productos;
+delimiter $$
+create procedure sp_agregarUsuario(us varchar(30), con varchar(100), nivAccId int, empId int)
+begin
+	insert into Usuarios(usuario,contrasenia, nivelAccesoId, empleadoId) values
+		(us, con, nivAccId, empId);
+end $$
+delimiter ;
 
-call sp_ListarFacturas();
 
-call sp_ListarProductos();
+delimiter $$
+create procedure sp_buscarUsuario(usu varchar(30))
+begin
+	select * from Usuarios
+		where usuario = usu;
+end $$
+delimiter ;
 
-call sp_ListarPromociones();
+delimiter $$
+create procedure sp_listarNivelAcceso()
+begin
+	select * from NivelesAcceso;
+end $$
+delimiter ;

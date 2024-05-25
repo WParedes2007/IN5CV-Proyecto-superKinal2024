@@ -19,10 +19,13 @@ import org.wernerparedes.controller.FormularioClienteController;
 import org.wernerparedes.controller.FormularioCompraController;
 import org.wernerparedes.controller.FormularioDistribuidorController;
 import org.wernerparedes.controller.FormularioEmpleadoController;
+import org.wernerparedes.controller.FormularioUsuarioController;
+import org.wernerparedes.controller.LoginController;
 import org.wernerparedes.controller.MenuCargoController;
 import org.wernerparedes.controller.MenuCategoriaProductoController;
 import org.wernerparedes.controller.MenuClienteController;
 import org.wernerparedes.controller.MenuCompraController;
+//import org.wernerparedes.controller.MenuCompraController;
 import org.wernerparedes.controller.MenuDistribuidorController;
 import org.wernerparedes.controller.MenuEmpleadoController;
 import org.wernerparedes.controller.MenuFacturaController;
@@ -43,7 +46,8 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
         this.stage = stage;
         stage.setTitle("Super Kinal App");
-        menuPrincipalView();
+        loginView();
+        //formUsuariosView();
         stage.show();
     }
     
@@ -146,6 +150,7 @@ public class Main extends Application {
             formEmpleadosView.setStage(this);
         }catch(Exception e){
             System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
     
@@ -155,6 +160,7 @@ public class Main extends Application {
             menuEmpleadoView.setStage(this);
         }catch(Exception e){
             System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
     
@@ -186,22 +192,14 @@ public class Main extends Application {
         }
     }
     
-    public void formComprasView(int op){
-        try{
-            FormularioCompraController formComprasView = (FormularioCompraController)switchScene("FormularioCompraView.fxml", 380, 520);
-            formComprasView.setOp(op);
-            formComprasView.setStage(this);
-        }catch(Exception e){
-            System.out.println(e.getMessage());
-        }
-    }
     
     public void menuCompraView(){
         try{
-            MenuCompraController menuCompraView = (MenuCompraController)switchScene("MenuCompraView.fxml",1200,750);
+            MenuCompraController menuCompraView = (MenuCompraController)switchScene("MenuCompraView.fxml",765,471);
             menuCompraView.setStage(this);
         }catch(Exception e){
             System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
     
@@ -222,6 +220,26 @@ public class Main extends Application {
             System.out.println(e.getMessage());
         }
     }
+     
+     public void loginView(){
+        try{
+            LoginController loginView = (LoginController)switchScene("LoginView.fxml",380,520);
+            loginView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+     
+     public void formUsuariosView(){
+        try{
+            FormularioUsuarioController formUsuariosView = (FormularioUsuarioController)switchScene("FormularioUsuarioView.fxml",380,520);
+            formUsuariosView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+     
+     
 
    
     public static void main(String[] args) {

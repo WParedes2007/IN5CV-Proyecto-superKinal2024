@@ -75,7 +75,7 @@ public class MenuPromocionController implements Initializable {
                 String precioPromocion = resultSet.getString("precioPromocion");
                 String descripcionPromocion = resultSet.getString("descripcionPromocion");
                 String fechaInicio = resultSet.getString("fechaInicio");
-                String fechaFinalizacion = resultSet.getString("fechaFInalizacion");
+                String fechaFinalizacion = resultSet.getString("fechaFinalizacion");
                 String nombreProducto = resultSet.getString("nombreProducto");
                 
                 promociones.add(new Promocion(promocionId, precioPromocion, descripcionPromocion, fechaInicio, fechaFinalizacion, nombreProducto));
@@ -122,36 +122,12 @@ public class MenuPromocionController implements Initializable {
             taDescripcion.setText(pn.getDescripcion());
             tfFechaInicio.setText(pn.getFechaInicio());
             tfFechaFinalizacion.setText(pn.getFechaFinalizacion());
-            cmbProducto.getSelectionModel().select(obtenerIndexProducto());
-        }
-    }
-    
-    public int obtenerIndexProducto(){
-        int index = 0;
-        for(int i = 0 ; i <= cmbProducto.getItems().size() ; i++){
-            String productoCmb = cmbProducto.getItems().get(i).toString();
-            String productoTbl = ((Promocion)tblPromociones.getSelectionModel().getSelectedItems()).getProducto();
-            if(productoCmb.equals(productoTbl)){
-                index = i;
-                break;
-            }
-            
-        }
-        return index;
-    }
-    
-    
-    /*public void cargarDatosEditar() {
-        Promociones pr = (Promociones) tblPromociones.getSelectionModel().getSelectedItem();
-        if (pr != null) {
-            tfPromocionId.setText(Integer.toString(pr.getPromocionId()));
-            taDescripcion.setText(pr.getDescripcionPromocion());
-            tfPrecio.setText(Double.toString(pr.getPrecioPromocion()));
             cmbProducto.getSelectionModel().select(obtenerIndexPromocion());
-            dpFechaInicio.setValue(pr.getFechaInicio().toLocalDate());
-            dpFechaFinalizacion.setValue(pr.getFechaFinalizacion().toLocalDate());
         }
-    }*/
+    }
+    
+    
+    
 
     public int obtenerIndexPromocion() {
         int index = 0;
@@ -170,12 +146,13 @@ public class MenuPromocionController implements Initializable {
         return index;
     }
     
+   
+    
     public void agregarPromociones(){
         try{
             conexion = Conexion.getInstance().obtenerConexion();
             String sql = "call sp_AgregarPromocion(?,?,?,?,?)";
             statement = conexion.prepareStatement(sql);
-            //statement.setString(1,tfPrecio.getText());
             statement.setDouble(1, Double.parseDouble(tfPrecio.getText()));
             statement.setString(2, taDescripcion.getText());
             statement.setString(3, tfFechaInicio.getText());

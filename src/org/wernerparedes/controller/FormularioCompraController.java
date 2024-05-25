@@ -7,8 +7,10 @@ package org.wernerparedes.controller;
 
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -44,6 +46,7 @@ public class FormularioCompraController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         if(CompraDTO.getCompraDTO().getCompra() != null){
+            tfFechaCompra.setText(LocalDate.now().toString());
             cargarDatos(CompraDTO.getCompraDTO().getCompra());
         }
     }
@@ -53,8 +56,9 @@ public class FormularioCompraController implements Initializable {
             conexion = Conexion.getInstance().obtenerConexion();
             String sql = "call sp_AgregarCompra(?,?)";
             statement = conexion.prepareStatement(sql);
-            statement.setString(1, tfFechaCompra.getText());
-            statement.setString(2, tfTotalCompra.getText());
+            statement.setDate(1, Date.valueOf(LocalDate.now()));
+        //statement.setDate(1, Date.valueOf(LocalDate.now(tfFechaCompra)));
+            statement.setDouble(2, 0);
             statement.execute();
 
         }catch(SQLException e){
@@ -75,7 +79,6 @@ public class FormularioCompraController implements Initializable {
     
     public void cargarDatos(Compra compra){
         tfCompraId.setText(Integer.toString(compra.getCompraId()));
-        tfFechaCompra.setText(compra.getFechaCompra());
         tfTotalCompra.setText(Double.toString(compra.getTotalCompra()));
     }
     
@@ -85,7 +88,7 @@ public class FormularioCompraController implements Initializable {
             String sql = "call sp_EditarCompra(?,?,?)";
             statement = conexion.prepareStatement(sql);
             statement.setInt(1, Integer.parseInt(tfCompraId.getText()));
-            statement.setString(2, tfFechaCompra.getText());
+            statement.setDate(2, Date.valueOf(tfFechaCompra.getText()));
             statement.setString(3, tfTotalCompra.getText());
             statement.execute();
         }catch(SQLException e){

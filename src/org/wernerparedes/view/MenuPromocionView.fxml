@@ -19,11 +19,11 @@
          </image>
       </ImageView>
       <TextField fx:id="tfPromocionId" editable="false" layoutX="40.0" layoutY="56.0" prefHeight="25.0" prefWidth="182.0" promptText="Id de la promocion" style="-fx-border-color: #130716; -fx-border-width: 5;" />
-      <TextField fx:id="tfPrecio" layoutX="40.0" layoutY="130.0" prefHeight="25.0" prefWidth="182.0" style="-fx-border-color: #130716; -fx-border-width: 5;" />
-      <TextField fx:id="tfFechaInicio" layoutX="40.0" layoutY="337.0" prefHeight="35.0" prefWidth="182.0" style="-fx-border-color: #130716; -fx-border-width: 5;" />
+      <TextField fx:id="tfPrecio" layoutX="40.0" layoutY="130.0" prefHeight="25.0" prefWidth="182.0" promptText="(10,2)" style="-fx-border-color: #130716; -fx-border-width: 5;" />
+      <TextField fx:id="tfFechaInicio" layoutX="40.0" layoutY="337.0" prefHeight="35.0" prefWidth="182.0" promptText="Año-Mes-Dia" style="-fx-border-color: #130716; -fx-border-width: 5;" />
       <ComboBox fx:id="cmbProducto" layoutX="251.0" layoutY="59.0" prefWidth="150.0" style="-fx-border-color: #130716; -fx-border-width: 2;" />
       <TextArea fx:id="taDescripcion" layoutX="40.0" layoutY="203.0" prefHeight="91.0" prefWidth="182.0" style="-fx-border-color: #130716; -fx-border-width: 5;" wrapText="true" />
-      <TextField fx:id="tfFechaFinalizacion" layoutX="40.0" layoutY="422.0" prefHeight="35.0" prefWidth="182.0" style="-fx-border-color: #130716; -fx-border-width: 5;" />
+      <TextField fx:id="tfFechaFinalizacion" layoutX="40.0" layoutY="422.0" prefHeight="35.0" prefWidth="182.0" promptText="Año-Mes-Dia" style="-fx-border-color: #130716; -fx-border-width: 5;" />
       <TableView fx:id="tblPromociones" layoutX="249.0" layoutY="94.0" onMouseClicked="#cargarDatosEditar" prefHeight="264.0" prefWidth="500.0" style="-fx-border-color: #130716; -fx-border-width: 4;">
          <columns>
             <TableColumn fx:id="colPromocionId" prefWidth="86.0" style="-fx-border-color: #130716;" text="Promocion ID" />

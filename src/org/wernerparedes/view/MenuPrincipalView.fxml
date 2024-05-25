@@ -11,7 +11,7 @@
    <children>
       <ImageView fitHeight="614.0" fitWidth="484.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../image/Background.jpg" />
+            <Image url="@../image/Background.png" />
          </image>
       </ImageView>
       <MenuBar layoutY="2.0" prefWidth="484.0">

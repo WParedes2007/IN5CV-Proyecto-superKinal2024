@@ -86,6 +86,21 @@ public class Producto {
         this.imagenProducto = imagenProducto;
     }
 
+    public Producto(int productoId, String nombreProducto, String descripcionProductos, int cantidadStock, double precioVentaUnitario, double precioVentaMayor, double precioCompra, Blob imagenProducto, String distribuidor, String categoriaProducto) {
+        this.productoId = productoId;
+        this.nombreProducto = nombreProducto;
+        this.descripcionProductos = descripcionProductos;
+        this.cantidadStock = cantidadStock;
+        this.precioVentaUnitario = precioVentaUnitario;
+        this.precioVentaMayor = precioVentaMayor;
+        this.precioCompra = precioCompra;
+        this.imagenProducto = imagenProducto;
+        this.distribuidor = distribuidor;
+        this.categoriaProducto = categoriaProducto;
+    }
+    
+    
+
     
     
     

@@ -1,79 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="1200.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="org.wernerparedes.controller.MenuCompraController">
+<AnchorPane id="AnchorPane" prefHeight="471.0" prefWidth="765.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.wernerparedes.controller.MenuCompraController">
    <children>
-      <ImageView fitHeight="750.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="471.0" fitWidth="765.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/Menu%20Compras.png" />
          </image>
       </ImageView>
-      <GridPane layoutX="99.0" layoutY="192.0" prefHeight="449.0" prefWidth="256.0">
-         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-         </rowConstraints>
-         <children>
-            <Button fx:id="btnAgregar" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="87.0" prefWidth="142.0" style="-fx-border-color: #130716; -fx-border-width: 5; -fx-background-color: #9A2848;" text="Agregar" textFill="#130716" GridPane.halignment="CENTER">
-               <font>
-                  <Font name="Verdana Bold" size="22.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnEditar" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="87.0" prefWidth="142.0" style="-fx-border-color: #130716; -fx-border-width: 5; -fx-background-color: #9A2848;" text="Editar" textFill="#130716" GridPane.halignment="CENTER" GridPane.rowIndex="1">
-               <font>
-                  <Font name="Verdana Bold" size="24.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="87.0" prefWidth="142.0" style="-fx-border-color: #130716; -fx-border-width: 5; -fx-background-color: #9A2848;" text="Eliminar" textFill="#130716" GridPane.halignment="CENTER" GridPane.rowIndex="2">
-               <font>
-                  <Font name="Verdana Bold" size="20.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="87.0" prefWidth="142.0" style="-fx-border-color: #130716; -fx-border-width: 5; -fx-background-color: #9A2848;" text="Reportes" textFill="#130716" GridPane.halignment="CENTER" GridPane.rowIndex="3">
-               <font>
-                  <Font name="Arial Bold" size="22.0" />
-               </font>
-            </Button>
-         </children>
-      </GridPane>
-      <TableView fx:id="tblCompras" layoutX="330.0" layoutY="280.0" prefHeight="309.0" prefWidth="592.0" style="-fx-border-color: #130716; -fx-border-width: 5;">
-         <columns>
-            <TableColumn fx:id="colCompraId" prefWidth="117.0" style="-fx-border-color: #130716;" text="Compra ID" />
-            <TableColumn fx:id="colFechaCompra" prefWidth="219.0" style="-fx-border-color: #130716;" text="Fecha" />
-            <TableColumn fx:id="colTotalCompra" prefWidth="246.0" style="-fx-border-color: #130716;" text="Total" />
-         </columns>
-      </TableView>
-      <TextField fx:id="tfCompraId" layoutX="667.0" layoutY="243.0" prefHeight="25.0" prefWidth="201.0" promptText="Ingrese El ID De La Compra A Buscar" style="-fx-border-color: #130716; -fx-border-width: 2;" />
-      <Button fx:id="btnBuscar" layoutX="874.0" layoutY="243.0" mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-border-color: #130716; -fx-border-width: 2; -fx-background-color: white;">
-         <graphic>
-            <ImageView fitHeight="24.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../image/icon.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <Button fx:id="btnRegresar" layoutX="769.0" layoutY="594.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="87.0" prefWidth="142.0" style="-fx-border-color: #130716; -fx-border-width: 5; -fx-background-color: #9A2848;" text="Regresar" textFill="#130716">
+      <Button fx:id="btnRegresar" layoutX="594.0" layoutY="379.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="47.0" prefWidth="142.0" style="-fx-background-color: #130716; -fx-border-color: #9A2848; -fx-border-width: 5;" text="Regresar" textFill="WHITE">
          <font>
-            <Font name="Arial Bold" size="22.0" />
+            <Font name="Verdana Bold" size="12.0" />
          </font>
       </Button>
+      <Button fx:id="btnGuardar" layoutX="441.0" layoutY="379.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="47.0" prefWidth="142.0" style="-fx-background-color: #130716; -fx-border-color: #9A2848; -fx-border-width: 5;" text="Guardar" textFill="WHITE">
+         <font>
+            <Font name="Verdana Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnVaciar" layoutX="292.0" layoutY="379.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="47.0" prefWidth="142.0" style="-fx-background-color: #130716; -fx-border-color: #9A2848; -fx-border-width: 5;" text="Vaciar" textFill="WHITE">
+         <font>
+            <Font name="Verdana Bold" size="12.0" />
+         </font>
+      </Button>
+      <TextField fx:id="tfCompraId" editable="false" layoutX="65.0" layoutY="95.0" maxHeight="1.0" minHeight="30.0" prefHeight="1.0" prefWidth="180.0" promptText="Compra ID" style="-fx-border-color: #130716; -fx-border-width: 5;" />
+      <TextField fx:id="tfFechaCompra" layoutX="65.0" layoutY="259.0" maxHeight="1.0" minHeight="30.0" prefHeight="1.0" prefWidth="180.0" style="-fx-border-color: #130716; -fx-border-width: 5;" />
+      <TextField fx:id="tfTotalCompra" editable="false" layoutX="65.0" layoutY="399.0" maxHeight="1.0" minHeight="30.0" prefHeight="1.0" prefWidth="180.0" promptText="Total Predeterminado 0" style="-fx-border-color: #130716; -fx-border-width: 5;" />
+      <TableView fx:id="tblCompras" layoutX="291.0" layoutY="149.0" prefHeight="228.0" prefWidth="308.0" style="-fx-border-color: #130716; -fx-border-width: 4;">
+         <columns>
+            <TableColumn fx:id="colCompraId" prefWidth="75.0" style="-fx-border-color: #130716;" text="Compra ID" />
+            <TableColumn fx:id="colFecha" prefWidth="109.0" style="-fx-border-color: #130716;" text="Fecha" />
+            <TableColumn fx:id="colTotal" prefWidth="114.0" style="-fx-border-color: #130716;" text="Total" />
+         </columns>
+      </TableView>
+      <ComboBox fx:id="cmbProductos" layoutX="293.0" layoutY="49.0" prefHeight="29.0" prefWidth="128.0" style="-fx-border-color: #130716; -fx-border-width: 2;" />
+      <ComboBox fx:id="cmbCompraId" layoutX="448.0" layoutY="49.0" prefHeight="29.0" prefWidth="128.0" style="-fx-border-color: #130716; -fx-border-width: 2;" />
    </children>
 </AnchorPane>

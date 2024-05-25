@@ -5,19 +5,21 @@
  */
 package org.wernerparedes.model;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author hermanos_P2
  */
 public class Compra {
     private int compraId;
-    private String fechaCompra;
+    private LocalDate fechaCompra;
     private double totalCompra;
 
     public Compra() {
     }
 
-    public Compra(int compraId, String fechaCompra, double totalCompra) {
+    public Compra(int compraId, LocalDate fechaCompra, double totalCompra) {
         this.compraId = compraId;
         this.fechaCompra = fechaCompra;
         this.totalCompra = totalCompra;
@@ -31,11 +33,11 @@ public class Compra {
         this.compraId = compraId;
     }
 
-    public String getFechaCompra() {
+    public LocalDate getFechaCompra() {
         return fechaCompra;
     }
 
-    public void setFechaCompra(String fechaCompra) {
+    public void setFechaCompra(LocalDate fechaCompra) {
         this.fechaCompra = fechaCompra;
     }
 
