@@ -55,7 +55,7 @@
                   <Font name="Verdana Bold" size="20.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="87.0" prefWidth="142.0" style="-fx-border-color: #130716; -fx-border-width: 5; -fx-background-color: #9A2848;" text="Reportes" textFill="#130716" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+            <Button fx:id="btnRegistro" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="87.0" prefWidth="142.0" style="-fx-border-color: #130716; -fx-border-width: 5; -fx-background-color: #9A2848;" text="Reportes" textFill="#130716" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                <font>
                   <Font name="Arial Bold" size="22.0" />
                </font>

@@ -40,6 +40,7 @@ import org.wernerparedes.dto.ProductoDTO;
 import org.wernerparedes.model.CategoriaProducto;
 import org.wernerparedes.model.Distribuidor;
 import org.wernerparedes.model.Producto;
+import org.wernerparedes.report.GenerarReporte;
 import org.wernerparedes.system.Main;
 import org.wernerparedes.utils.SuperKinalAlert;
 
@@ -60,7 +61,7 @@ public class MenuProductoController implements Initializable {
     @FXML
     ComboBox cmbDistribuidores, cmbCategorias;
     @FXML
-    Button btnRegresar,btnGuardar, btnBuscar, btnEliminar;
+    Button btnRegresar,btnGuardar, btnBuscar, btnEliminar, btnRegistro;
     @FXML
     TextField tfProductoId, tfNombreProducto,tfUnidad, tfMayor, tfCompra, tfDistribuidor, tfCategoria, tfStock ;
     @FXML
@@ -73,9 +74,8 @@ public class MenuProductoController implements Initializable {
     ImageView imgCargar, imgMostrar;
     @FXML
     Label lblNombreProducto, lblStock, lblUnitario, lblMayor, lblCompra;
-    /**
-     * Initializes the controller class.
-     */
+   
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         cmbDistribuidores.setItems(listarDistribuidores());
@@ -108,6 +108,8 @@ public class MenuProductoController implements Initializable {
                 int proId = ((Producto)tblProductos.getSelectionModel().getSelectedItem()).getProductoId();
                 eliminarProducto(proId);
                 cargarDatos();
+            }else if(event.getSource()== btnRegistro){
+                GenerarReporte.getInstance().generarProducto();
             }    
         }
             

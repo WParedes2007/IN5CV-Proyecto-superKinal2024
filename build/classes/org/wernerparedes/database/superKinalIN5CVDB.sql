@@ -182,8 +182,8 @@ insert into Clientes(nombre,apellido,telefono,direccion, nit) values
 INSERT INTO Empleados(nombreEmpleado, apellidoEmpleado, sueldo, horaEntrada, horaSalida, cargoId, encargado)VALUES
  ('María', 'García', 2000.00, '08:00:00', '17:00:00', 1, NULL);
 
-INSERT INTO Facturas(fecha, hora, total, clienteId, empleadoId)VALUES
- ('2024-04-19', '12:30:00', 150.00, 1, 1);
+INSERT INTO Facturas(fecha, hora, clienteId, empleadoId)VALUES
+ ('2024-04-19', '12:30:00', 1, 1);
 
 INSERT INTO Distribuidores(nombreDistribuidor, direccionDistribuidor, nitDistribuidor, telefonoDistribuidor, web)VALUES
  ('Distribuidor XYZ', 'Avenida Principal', '987654-3', '555-1234', 'www.distribuidorxyz.com');

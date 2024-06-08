@@ -25,7 +25,6 @@ import org.wernerparedes.controller.MenuCargoController;
 import org.wernerparedes.controller.MenuCategoriaProductoController;
 import org.wernerparedes.controller.MenuClienteController;
 import org.wernerparedes.controller.MenuCompraController;
-//import org.wernerparedes.controller.MenuCompraController;
 import org.wernerparedes.controller.MenuDistribuidorController;
 import org.wernerparedes.controller.MenuEmpleadoController;
 import org.wernerparedes.controller.MenuFacturaController;
@@ -46,8 +45,9 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
         this.stage = stage;
         stage.setTitle("Super Kinal App");
-        loginView();
+        //loginView();
         //formUsuariosView();
+        menuPrincipalView();
         stage.show();
     }
     
@@ -226,6 +226,7 @@ public class Main extends Application {
             LoginController loginView = (LoginController)switchScene("LoginView.fxml",380,520);
             loginView.setStage(this);
         }catch(Exception e){
+            e.printStackTrace();
             System.out.println(e.getMessage());
         }
     }
@@ -235,6 +236,7 @@ public class Main extends Application {
             FormularioUsuarioController formUsuariosView = (FormularioUsuarioController)switchScene("FormularioUsuarioView.fxml",380,520);
             formUsuariosView.setStage(this);
         }catch(Exception e){
+            e.printStackTrace();
             System.out.println(e.getMessage());
         }
     }

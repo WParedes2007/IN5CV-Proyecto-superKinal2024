@@ -27,6 +27,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import org.wernerparedes.dao.Conexion;
 import org.wernerparedes.dto.ClienteDTO;
 import org.wernerparedes.model.Cliente;
+import org.wernerparedes.report.GenerarReporte;
 import org.wernerparedes.system.Main;
 import org.wernerparedes.utils.SuperKinalAlert;
 
@@ -46,7 +47,7 @@ public class MenuClienteController implements Initializable {
     @FXML
     Button btnAgregar;
     @FXML
-    Button btnEditar, btnEliminar, btnBuscar;
+    Button btnEditar, btnEliminar, btnBuscar, btnRegistro;
     @FXML
     Button btnRegresar;
     @FXML
@@ -212,6 +213,8 @@ public class MenuClienteController implements Initializable {
             }
         }else if(event.getSource()== btnRegresar){
         stage.menuPrincipalView();
+        }else if(event.getSource()== btnRegistro){
+            GenerarReporte.getInstance().generarCliente();
         }
     }
     

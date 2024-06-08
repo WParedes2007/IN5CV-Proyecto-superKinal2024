@@ -71,14 +71,12 @@ public class LoginController implements Initializable {
             }
         }else if(event.getSource() == btnRegistrar){
             stage.formUsuariosView();
-                        
         }
     }
     
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }  
 
     public Main getStage() {

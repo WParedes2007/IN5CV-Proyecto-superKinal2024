@@ -383,10 +383,10 @@ call sp_ListarEmpleados();
 
 -- Agregar: Facturas
 DELIMITER $$
-CREATE PROCEDURE sp_AgregarFactura(IN fec DATE,IN hor TIME,IN tot DECIMAL(10,2),IN cliId INT,IN empId INT)
+CREATE PROCEDURE sp_AgregarFactura(IN fec DATE,IN hor TIME,IN cliId INT,IN empId INT)
 BEGIN
-    INSERT INTO Facturas(fecha, hora, total, clienteId, empleadoId)
-    VALUES (fec, hor, tot, cliId, empId);
+    INSERT INTO Facturas(fecha, hora, clienteId, empleadoId)
+    VALUES (fec, hor, cliId, empId);
 END $$
 DELIMITER ;
 
@@ -428,18 +428,19 @@ DELIMITER ;
 
 -- Editar: Facturas
 DELIMITER $$
-CREATE PROCEDURE sp_EditarFactura(IN facId INT,IN fec DATE,IN hor TIME,IN tot DECIMAL(10,2),IN cliId INT,IN empId INT)
+CREATE PROCEDURE sp_EditarFactura(IN facId INT,IN fec DATE,IN hor TIME, IN cliId INT,IN empId INT)
 BEGIN
     UPDATE Facturas
     SET
         fecha = fec,
         hora = hor,
-        total = tot,
         clienteId = cliId,
         empleadoId = empId
     WHERE facturaId = facId;
 END $$
 DELIMITER ;
+
+
 
 -- CRUD Productos
 -- Agregar: Productos
@@ -579,14 +580,7 @@ END $$
 DELIMITER ;
 
 -- Listar: Detalle Compra
-DELIMITER $$
-CREATE PROCEDURE sp_ListarDetallesCompra()
-BEGIN
-    SELECT
-        *
-		FROM DetalleCompra;
-END $$
-DELIMITER ;
+
 
 DELIMITER $$
 CREATE PROCEDURE sp_ListarDetallesCompra()
@@ -782,3 +776,5 @@ begin
 	select * from NivelesAcceso;
 end $$
 delimiter ;
+
+call sp_ListarFacturas();

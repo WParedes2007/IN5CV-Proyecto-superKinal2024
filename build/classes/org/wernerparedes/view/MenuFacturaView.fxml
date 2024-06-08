@@ -20,12 +20,12 @@
       <TextField fx:id="tfFacturaId" editable="false" layoutX="46.0" layoutY="57.0" prefHeight="25.0" prefWidth="200.0" promptText="Factura ID" style="-fx-border-color: #130716; -fx-border-width: 2;" />
       <ComboBox fx:id="cmbCliente" layoutX="257.0" layoutY="57.0" prefWidth="150.0" style="-fx-border-color: #130716; -fx-border-width: 2;" />
       <ComboBox fx:id="cmbEmpleado" layoutX="409.0" layoutY="57.0" prefWidth="150.0" style="-fx-border-color: #130716; -fx-border-width: 2;" />
-      <Button fx:id="btnRegresar" layoutX="560.0" layoutY="330.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="47.0" prefWidth="142.0" style="-fx-background-color: #130716; -fx-border-color: #9A2848; -fx-border-width: 5;" text="Regresar" textFill="WHITE">
+      <Button fx:id="btnRegresar" layoutX="413.0" layoutY="330.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="47.0" prefWidth="142.0" style="-fx-background-color: #130716; -fx-border-color: #9A2848; -fx-border-width: 5;" text="Regresar" textFill="WHITE">
          <font>
             <Font name="Verdana Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="btnGuardar" layoutX="407.0" layoutY="330.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="47.0" prefWidth="142.0" style="-fx-background-color: #130716; -fx-border-color: #9A2848; -fx-border-width: 5;" text="Guardar" textFill="WHITE">
+      <Button fx:id="btnGuardar" layoutX="51.0" layoutY="330.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="47.0" prefWidth="191.0" style="-fx-background-color: #130716; -fx-border-color: #9A2848; -fx-border-width: 5;" text="Crear Factura" textFill="WHITE">
          <font>
             <Font name="Verdana Bold" size="12.0" />
          </font>
@@ -35,9 +35,9 @@
             <Font name="Verdana Bold" size="12.0" />
          </font>
       </Button>
-      <TextField fx:id="tfFecha" layoutX="46.0" layoutY="149.0" prefHeight="25.0" prefWidth="200.0" style="-fx-border-color: #130716; -fx-border-width: 2;" />
-      <TextField fx:id="tfHora" layoutX="46.0" layoutY="265.0" prefHeight="25.0" prefWidth="200.0" style="-fx-border-color: #130716; -fx-border-width: 2;" />
-      <TextField fx:id="tfTotal" editable="false" layoutX="46.0" layoutY="377.0" prefHeight="25.0" prefWidth="200.0" promptText="Total Predeterminado 0" style="-fx-border-color: #130716; -fx-border-width: 2;" />
+      <TextField fx:id="tfFecha" layoutX="46.0" layoutY="125.0" prefHeight="25.0" prefWidth="200.0" style="-fx-border-color: #130716; -fx-border-width: 2;" />
+      <TextField fx:id="tfHora" layoutX="46.0" layoutY="196.0" prefHeight="25.0" prefWidth="200.0" style="-fx-border-color: #130716; -fx-border-width: 2;" />
+      <TextField fx:id="tfTotal" editable="false" layoutX="46.0" layoutY="273.0" prefHeight="25.0" prefWidth="200.0" promptText="Total Predeterminado 0" style="-fx-border-color: #130716; -fx-border-width: 2;" />
       <TableView fx:id="tblFacturas" layoutX="256.0" layoutY="125.0" prefHeight="200.0" prefWidth="445.0" style="-fx-border-color: #130716; -fx-border-width: 4;">
          <columns>
             <TableColumn fx:id="colFacturaId" prefWidth="68.0" style="-fx-border-color: #130716;" text="Factura ID" />
@@ -50,5 +50,15 @@
       </TableView>
       <ComboBox fx:id="cmbProductos" layoutX="257.0" layoutY="417.0" prefWidth="150.0" style="-fx-border-color: #130716; -fx-border-width: 2;" />
       <ComboBox fx:id="cmbFacturaId" layoutX="412.0" layoutY="417.0" prefWidth="150.0" style="-fx-border-color: #130716; -fx-border-width: 2;" />
+      <Button fx:id="btnTotal" layoutX="51.0" layoutY="394.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="47.0" prefWidth="191.0" style="-fx-background-color: #130716; -fx-border-color: #9A2848; -fx-border-width: 5;" text="Asignar Total" textFill="WHITE">
+         <font>
+            <Font name="Verdana Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnRegistro" layoutX="562.0" layoutY="330.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="47.0" prefWidth="142.0" style="-fx-background-color: #130716; -fx-border-color: #9A2848; -fx-border-width: 5;" text="Registro" textFill="WHITE">
+         <font>
+            <Font name="Verdana Bold" size="12.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

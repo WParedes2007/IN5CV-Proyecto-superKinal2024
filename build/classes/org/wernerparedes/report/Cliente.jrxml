@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Cliente" pageWidth="912" pageHeight="400" columnWidth="872" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f57d44b4-da83-4d0e-b0e6-2081f60aff84">
+	<property name="com.jaspersoft.studio.data.sql.tables" value="YENsaWVudGVzYCAsMTUsMTUsZTE3NzE5MGUtMzkzMC00Y2Y3LWIwYzQtNjkxYTEyZTY1Y2FjOw=="/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SUPERKINAIN5CV"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT *
+FROM `Clientes`]]>
+	</queryString>
+	<field name="clienteId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="clienteId"/>
+		<property name="com.jaspersoft.studio.field.label" value="clienteId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="clientes"/>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="clientes"/>
+	</field>
+	<field name="apellido" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="apellido"/>
+		<property name="com.jaspersoft.studio.field.label" value="apellido"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="clientes"/>
+	</field>
+	<field name="telefono" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="telefono"/>
+		<property name="com.jaspersoft.studio.field.label" value="telefono"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="clientes"/>
+	</field>
+	<field name="direccion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="direccion"/>
+		<property name="com.jaspersoft.studio.field.label" value="direccion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="clientes"/>
+	</field>
+	<field name="nit" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nit"/>
+		<property name="com.jaspersoft.studio.field.label" value="nit"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="clientes"/>
+	</field>
+	<group name="clienteId">
+		<groupExpression><![CDATA[$F{clienteId}]]></groupExpression>
+	</group>
+	<group name="nombre">
+		<groupExpression><![CDATA[$F{nombre}]]></groupExpression>
+	</group>
+	<group name="apellido">
+		<groupExpression><![CDATA[$F{apellido}]]></groupExpression>
+	</group>
+	<group name="telefono">
+		<groupExpression><![CDATA[$F{telefono}]]></groupExpression>
+	</group>
+	<group name="direccion">
+		<groupExpression><![CDATA[$F{direccion}]]></groupExpression>
+	</group>
+	<group name="nit">
+		<groupExpression><![CDATA[$F{nit}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="88" splitType="Stretch">
+			<staticText>
+				<reportElement x="120" y="20" width="170" height="46" uuid="8a8e7b50-3773-497b-b599-166e93e2c29c"/>
+				<textElement textAlignment="Center">
+					<font fontName="Verdana" size="30" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Clientes]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="0" width="103" height="80" uuid="a4902791-65b8-45f2-a382-7ea646b5ec85"/>
+				<imageExpression><![CDATA["C:/Users/hermanos_P2/OneDrive/Escritorio/Repositorio Local/IN5CV-Proyecto-superKinal2024/src/org/wernerparedes/image/Diseño_sin_título__1_-removebg-preview.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="37" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="2" width="50" height="18" uuid="81311c50-ed26-430d-b749-78aec9c6f900"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="1" width="100" height="19" uuid="88d2980a-97df-405d-9c5f-3323f2ad9545"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="230" y="1" width="100" height="19" uuid="00422dc9-5dc9-422c-9274-08f0df224569"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[APELLIDO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="370" y="0" width="150" height="20" uuid="594fceb1-74df-402f-9496-f1332a2652f8"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[NO. DE TELEFONO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="530" y="0" width="100" height="20" uuid="0ab087b4-90e0-4ff0-9b1b-48599c30f2de"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[DIRECCION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="690" y="0" width="100" height="20" uuid="37e0a26f-eced-45b7-b67c-b853c2528672"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[NIT]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="34">
+			<textField>
+				<reportElement x="60" y="4" width="160" height="26" uuid="2965d7be-0304-4dcd-9299-8025bae8146b"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="370" y="4" width="150" height="26" uuid="a0916fdd-27a8-4ac3-beaf-db86e3555caa"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="230" y="4" width="130" height="26" uuid="94bb4182-f2d0-40f7-98bf-acece2702f5f"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apellido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="530" y="4" width="142" height="26" uuid="f6801ea0-6869-4357-b1ab-d9045427d537"/>
+				<textElement textAlignment="Left">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{direccion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="4" width="40" height="26" uuid="82438e8f-4b65-4597-a8ea-5eaf91ae16a9"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{clienteId}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="690" y="4" width="150" height="26" uuid="85d56667-b4bb-40b9-82c7-0bbdecc9fbf8"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nit}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="50">
+			<staticText>
+				<reportElement x="20" y="16" width="490" height="19" uuid="cf7c577e-abfb-49f9-84dc-30b95fd22b8a"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Estos Son Los Clientes Registrados Por El Sistema =)]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

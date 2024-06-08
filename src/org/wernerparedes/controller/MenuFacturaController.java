@@ -34,6 +34,7 @@ import org.wernerparedes.model.DetalleFactura;
 import org.wernerparedes.model.Empleado;
 import org.wernerparedes.model.Factura;
 import org.wernerparedes.model.Producto;
+import org.wernerparedes.report.GenerarReporte;
 import org.wernerparedes.system.Main;
 
 /**
@@ -43,14 +44,14 @@ import org.wernerparedes.system.Main;
  */
 public class MenuFacturaController implements Initializable {
 
-       private Main stage;
+    private Main stage;
     
     private static Connection conexion = null;
     private static PreparedStatement statement = null;
     private static ResultSet resultset = null;
     
     @FXML
-    Button btnRegresar, btnGuardar, btnVaciar;
+    Button btnRegresar, btnGuardar,btnTotal, btnVaciar, btnRegistro;
     
     @FXML
     TextField tfFacturaId, tfHora, tfTotal, tfFecha;
@@ -71,11 +72,15 @@ public class MenuFacturaController implements Initializable {
         }else if(event.getSource() == btnGuardar){
             if(tfFacturaId.getText().equals("")){
                 agregarFacturas();
+                cargarDatos();
+            }
+        }else if(event.getSource() == btnTotal){
                 agregarDetalleFactura();
                 cargarDatos();
-        }
         }else if(event.getSource() == btnVaciar){
                 vaciarCampos();
+        }else if(event.getSource() == btnRegistro){
+            GenerarReporte.getInstance().generarFactura(((Factura)tblFacturas.getSelectionModel().getSelectedItem()).getFacturaId());
         }
     }
     
@@ -220,7 +225,7 @@ public class MenuFacturaController implements Initializable {
         return FXCollections.observableList(empleados);
     }
     
-    public void agregarFacturas(){
+    /*public void agregarFacturas(){
         try{
             conexion = Conexion.getInstance().obtenerConexion();
             String sql = "call sp_AgregarFactura(?, ?, ?, ?, ?)";
@@ -246,9 +251,36 @@ public class MenuFacturaController implements Initializable {
                 System.out.println(e.getMessage());
             }
         }
+    }*/
+    
+    public void agregarFacturas(){
+        try{
+            conexion = Conexion.getInstance().obtenerConexion();
+            String sql = "call sp_AgregarFactura(?, ?, ?, ?)";
+            statement = conexion.prepareStatement(sql);
+            statement.setDate(1, Date.valueOf(LocalDate.now()));
+            statement.setTime(2, Time.valueOf(LocalTime.now()));
+            statement.setInt(3, ((Cliente)cmbCliente.getSelectionModel().getSelectedItem()).getClienteId());
+            statement.setInt(4, ((Empleado)cmbEmpleado.getSelectionModel().getSelectedItem()).getEmpleadoId());
+            statement.execute();
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }finally{
+            try{
+                if(statement != null){
+                    statement.close();
+                }
+                if(conexion != null){
+                    conexion.close();
+                }
+                               
+            }catch(SQLException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
      
-    public ObservableList<Integer> listarFacturaId() {
+    /*public ObservableList<Integer> listarFacturaId() {
         HashSet<Integer> facturaIds = new HashSet<>(); 
 
         try {
@@ -278,18 +310,20 @@ public class MenuFacturaController implements Initializable {
             }
         }
         return FXCollections.observableList(new ArrayList<>(facturaIds));
-    }
+    }*/
 
     public void agregarDetalleFactura() {
         try {
             conexion = Conexion.getInstance().obtenerConexion();
             String sql = "call sp_AgregarDetalleFactura(?,?)";
             statement = conexion.prepareStatement(sql);
-            Integer facturaSeleccionada = (Integer) cmbFacturaId.getSelectionModel().getSelectedItem();
+            Factura facturaSeleccionada = (Factura) cmbFacturaId.getSelectionModel().getSelectedItem();
+            //Integer facturaSeleccionada = (Integer) cmbFacturaId.getSelectionModel().getSelectedItem();
             Producto productoSeleccionado = (Producto) cmbProductos.getSelectionModel().getSelectedItem();
             
             if (facturaSeleccionada != null && productoSeleccionado != null) {
-                statement.setInt(1, facturaSeleccionada);
+                statement.setInt(1, facturaSeleccionada.getFacturaId());
+                //statement.setInt(1, facturaSeleccionada);
                 statement.setInt(2, productoSeleccionado.getProductoId());
                 statement.execute();
             }
@@ -351,9 +385,36 @@ public class MenuFacturaController implements Initializable {
         return FXCollections.observableList(productos);
     }
     
+    public void asignarTotal(){
+        try{
+            conexion = Conexion.getInstance().obtenerConexion();
+            String sql = "call sp_asignarTotal(?,?)";
+            statement = conexion.prepareStatement(sql);
+            statement.setDouble(1, Double.parseDouble(tfTotal.getText()));
+            statement.setInt(2, Integer.parseInt(tfFacturaId.getText()));
+            statement.execute();
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }finally{
+            try{
+                if(resultset != null){
+                    resultset.close();
+                }
+                if(statement != null){
+                    statement.close();
+                }
+                if(conexion != null){
+                    conexion.close();
+                }
+            }catch(SQLException e){
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        cmbFacturaId.setItems(listarFacturaId());
+        cmbFacturaId.setItems(listarFacturas());
         cmbProductos.setItems(listarProductos());
         cmbCliente.setItems(listarClientes());
         cmbEmpleado.setItems(listarEmpleados());
@@ -369,6 +430,8 @@ public class MenuFacturaController implements Initializable {
     public void setStage(Main stage) {
         this.stage = stage;
     }
-       
+    
+    
+  
     
 }

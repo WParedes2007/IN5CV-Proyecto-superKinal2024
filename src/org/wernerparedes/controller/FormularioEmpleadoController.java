@@ -117,6 +117,7 @@ public class FormularioEmpleadoController implements Initializable {
             statement.execute();
         }catch(SQLException e){
             System.out.println(e.getMessage());
+            e.printStackTrace();
         }finally{
             try{
                 if(conexion != null){
@@ -163,7 +164,11 @@ public class FormularioEmpleadoController implements Initializable {
     @FXML
     public void handleButtonAction(ActionEvent event){
         if(event.getSource() == btnCancelar){
-            stage.menuEmpleadoView();
+              if(op == 3){
+                stage.formUsuariosView();
+            }else{
+                stage.menuEmpleadoView();
+            }
             EmpleadoDTO.getEmpleadoDTO().setEmpleado(null);
         }else if(event.getSource() == btnGuardar){
             if(op == 1){
