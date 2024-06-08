@@ -30,7 +30,7 @@
          </image>
       </ImageView>
       <TextArea fx:id="taDescripcionProducto" layoutX="1107.0" layoutY="195.0" prefHeight="112.0" prefWidth="140.0" style="-fx-border-color: #130716; -fx-border-width: 5;" wrapText="true" />
-      <Button fx:id="btnGuardar" layoutX="1074.0" layoutY="493.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="38.0" prefWidth="103.0" style="-fx-border-color: #9A2848; -fx-background-color: #130716; -fx-border-width: 5; borde: 10;" text="Guardar" textFill="WHITE">
+      <Button fx:id="btnGuardar" layoutX="1019.0" layoutY="769.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="38.0" prefWidth="103.0" style="-fx-border-color: #9A2848; -fx-background-color: #130716; -fx-border-width: 5; borde: 10;" text="Guardar" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="16.0" />
          </font>
@@ -66,7 +66,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Button fx:id="btnRegresar" layoutX="738.0" layoutY="252.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="87.0" prefWidth="142.0" style="-fx-border-color: #130716; -fx-border-width: 5; -fx-background-color: #9A2848;" text="Regresar" textFill="#130716">
+      <Button fx:id="btnRegresar" layoutX="673.0" layoutY="705.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="87.0" prefWidth="142.0" style="-fx-border-color: #130716; -fx-border-width: 5; -fx-background-color: #9A2848;" text="Regresar" textFill="#130716">
          <font>
             <Font name="Arial Bold" size="22.0" />
          </font>
@@ -84,7 +84,7 @@
          </columns>
       </TableView>
       <TextField fx:id="tfCompra" layoutX="888.0" layoutY="499.0" maxHeight="1.0" minHeight="30.0" prefHeight="1.0" prefWidth="180.0" promptText="(10,2)" style="-fx-border-color: #130716; -fx-border-width: 5;" />
-      <Button fx:id="btnEliminar" layoutX="558.0" layoutY="252.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="87.0" prefWidth="142.0" style="-fx-border-color: #130716; -fx-border-width: 5; -fx-background-color: #9A2848;" text="Eliminar" textFill="#130716">
+      <Button fx:id="btnEliminar" layoutX="493.0" layoutY="705.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="87.0" prefWidth="142.0" style="-fx-border-color: #130716; -fx-border-width: 5; -fx-background-color: #9A2848;" text="Eliminar" textFill="#130716">
          <font>
             <Font name="Verdana Bold" size="20.0" />
          </font>
@@ -96,7 +96,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Button fx:id="btnRegistro" layoutX="388.0" layoutY="252.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="87.0" prefWidth="142.0" style="-fx-border-color: #130716; -fx-border-width: 5; -fx-background-color: #9A2848;" text="Registro" textFill="#130716">
+      <Button fx:id="btnRegistro" layoutX="323.0" layoutY="705.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="87.0" prefWidth="142.0" style="-fx-border-color: #130716; -fx-border-width: 5; -fx-background-color: #9A2848;" text="Registro" textFill="#130716">
          <font>
             <Font name="Verdana Bold" size="20.0" />
          </font>

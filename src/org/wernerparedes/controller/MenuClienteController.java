@@ -212,7 +212,7 @@ public class MenuClienteController implements Initializable {
             
             }
         }else if(event.getSource()== btnRegresar){
-        stage.menuPrincipalView();
+            stage.menuPrincipalView();
         }else if(event.getSource()== btnRegistro){
             GenerarReporte.getInstance().generarCliente();
         }

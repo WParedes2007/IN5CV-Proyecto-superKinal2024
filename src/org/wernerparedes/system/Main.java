@@ -45,9 +45,9 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
         this.stage = stage;
         stage.setTitle("Super Kinal App");
-        //loginView();
+        loginView();
         //formUsuariosView();
-        menuPrincipalView();
+        //menuPrincipalView();
         stage.show();
     }
     
